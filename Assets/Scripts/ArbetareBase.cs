@@ -26,7 +26,7 @@ public class ArbetareBase : MonoBehaviour
         StartCoroutine(onBreak());
     }
 
-    IEnumerator onBreak() //coroutine medans man är på rast
+    public IEnumerator onBreak() //coroutine medans man är på rast
     {
         yield return new WaitForSeconds(15);
         breakTimer = 0;
