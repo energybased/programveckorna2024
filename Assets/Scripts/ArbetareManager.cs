@@ -34,6 +34,7 @@ public class ArbetareManager : ArbetareBase
             Destroy(GameObject);
         }
 
+        v‰ntarPÂAnst‰llning.Clear();
         guys.enabled = false;
     }
 
@@ -47,6 +48,7 @@ public class ArbetareManager : ArbetareBase
             Destroy(GameObject);
         }
 
+        v‰ntarPÂAnst‰llning.Clear();
         guys.enabled = false;
     }
 
@@ -60,6 +62,7 @@ public class ArbetareManager : ArbetareBase
             Destroy(GameObject);
         }
 
+        v‰ntarPÂAnst‰llning.Clear();
         guys.enabled = false;
     }
 

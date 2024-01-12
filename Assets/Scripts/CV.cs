@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CV : ArbetareBase
-{   
-    
+{
     int rngSpeed;
     int rngQuality;
     int rngService;
