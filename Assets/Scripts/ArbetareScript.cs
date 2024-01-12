@@ -6,14 +6,15 @@ public class ArbetareScript : ArbetareBase
 {
     public float breakTimer = 0; //timer som räknar upp till rast
     public int timeUntilBreak; //hur långt brodern arbetar innan trötthet
-    bool tiredHappened = false; //kollar om bror har blivit trött
+    public bool tiredHappened = false; //kollar om bror har blivit trött
 
-    CV cv;
+    CV cv; 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collider)
     {
-        if (collision.gameObject.tag == "worker" && Input.GetKeyDown(KeyCode.E) && tiredHappened)
+        if (Input.GetKeyDown(KeyCode.F) && collider.gameObject.tag == "boss" && tiredHappened == true)
         {
+            print("go on break");
             Invoke("onBreak", 15f);
         }
     }
@@ -57,7 +58,7 @@ public class ArbetareScript : ArbetareBase
     {
         breakTimer += 1 * Time.deltaTime; //timer som räknar upp till rast
 
-        if (breakTimer >= timeUntilBreak && !tiredHappened)
+        if (breakTimer >= 2 && breakTimer >= timeUntilBreak && tiredHappened == false)
         {
             print("bro is tired");
             workerSpeed *= 0.5f;
