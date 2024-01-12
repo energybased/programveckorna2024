@@ -13,5 +13,6 @@ public class selectObjectFunction : MonoBehaviour
         var selectedObject = Instantiate(emptyObject, mouseWorldPos, Quaternion.identity);
         selectedObject.AddComponent<SpriteRenderer>().sprite = localSprite.sprite;
         selectedObject.AddComponent<selectedObjectBehavior>();
+        selectedObject.GetComponent<selectedObjectBehavior>().originButton = gameObject;
     }
 }
