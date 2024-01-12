@@ -31,7 +31,6 @@ public class ClockUI : MonoBehaviour
         float rotationDegreesPerDay = 360f;
         clockHandTransform.eulerAngles = new Vector3(0, 0, -dayNormalized * rotationDegreesPerDay);
 
-        //string daysString = (dayNormalized * REAL_SECONDS_PER_INGAME_DAY).ToString("1");
         if (day >= 1)
         {
             numDays++;
@@ -40,13 +39,5 @@ public class ClockUI : MonoBehaviour
         }
     }
 
-
-    //private void FixedUpdate(float rEAL_SECONDS_PER_INGAME_DAY)
-    //{
-    //    if (rEAL_SECONDS_PER_INGAME_DAY + 30f)
-    //    {
-
-    //    }
-    //}
 
 }
