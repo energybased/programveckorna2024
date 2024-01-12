@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class ClockUI : MonoBehaviour
@@ -10,12 +11,15 @@ public class ClockUI : MonoBehaviour
 
     private const float REAL_SECONDS_PER_INGAME_DAY = 720f;
     private Transform clockHandTransform;
-    private Text dayText;
+    private TextMeshProUGUI dayText;
     private float day;
+    int numDays = 1;
 
     private void Awake()
     {
         clockHandTransform = transform.Find("clockHand");
+        dayText = transform.Find("dayText").GetComponent<TextMeshProUGUI>();
+        dayText.text = "Day " + numDays;
     }
 
     private void Update()
@@ -27,11 +31,22 @@ public class ClockUI : MonoBehaviour
         float rotationDegreesPerDay = 360f;
         clockHandTransform.eulerAngles = new Vector3(0, 0, -dayNormalized * rotationDegreesPerDay);
 
-        //if (dayNormalized + 1f)
+        //string daysString = (dayNormalized * REAL_SECONDS_PER_INGAME_DAY).ToString("1");
+        if (day >= 1)
         {
-
+            numDays++;
+            day = 0;
+            dayText.text = "Day " + numDays;
         }
     }
 
+
+    //private void FixedUpdate(float rEAL_SECONDS_PER_INGAME_DAY)
+    //{
+    //    if (rEAL_SECONDS_PER_INGAME_DAY + 30f)
+    //    {
+
+    //    }
+    //}
 
 }
