@@ -10,6 +10,7 @@ public class ArbetareBase : MonoBehaviour
     public float workerQuality;
     public float workerService;
     public int restingTime;
+    public enum race { };
     
     //rastbaserade variabler
     public float breakTimer = 0; //timer som räknar upp till rast
