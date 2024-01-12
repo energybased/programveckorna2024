@@ -13,67 +13,95 @@ public class CV : ArbetareBase
     // Start is called before the first frame update
     void Start()
     {
-        rngSpeed = Random.Range(1, 10);
-        rngQuality = Random.Range(1, 10);
-        rngService = Random.Range(1, 10);
-        rngBreak = Random.Range(1, 10);
+        rngSpeed = Random.Range(1, 11);
+        rngQuality = Random.Range(1, 11);
+        rngService = Random.Range(1, 11);
+        rngBreak = Random.Range(1, 11);
     }
 
     // Update is called once per frame
     void Update()
     {
         //Calculate speed
-        if(rngSpeed <= 3)
-            workerSpeed = 1;
-        
-        else if(rngSpeed <= 6)
-            workerSpeed = 2;
-        
-        else if(rngSpeed <= 9)
-            workerSpeed = 3;
-        
-        else
-            workerSpeed = 4;
-        
+        switch(rngSpeed)
+        {
+            case <= 3:
+                workerSpeed = 1;
+                break;
+
+            case >= 4 and <= 6:
+                workerSpeed = 2;
+                break;
+
+            case >= 7 and <= 9:
+                workerSpeed = 3;
+                break;
+            
+            case >= 10:
+                workerSpeed = 4;
+                break;
+        }
+
 
         //Calculate quality
-        if (rngQuality <= 3)
-            workerQuality = 1;
-        
-        else if (rngQuality <= 6)        
-            workerQuality = 2;
-        
-        else if (rngQuality <= 9)
-            workerQuality = 3;
-        
-        else
-            workerQuality = 4;
-        
+        switch (rngQuality)
+        {
+            case <= 3:
+                workerQuality = 1;
+                break;
+
+            case >= 4 and <= 6:
+                workerQuality = 2;
+                break;
+
+            case >= 7 and <= 9:
+                workerQuality = 3;
+                break;
+
+            case >= 10:
+                workerQuality = 4;
+                break;
+        }
+
 
         //Calculate Service
-        if (rngService <= 3)
-            workerService = 1;
-        
-        else if (rngService <= 6)
-            workerService = 2;
-        
-        else if (rngService <= 9)
-            workerService = 3;
+        switch (rngService)
+        {
+            case <= 3:
+                workerService = 1;
+                break;
 
-        else
-            workerService = 4;
+            case >= 4 and <= 6:
+                workerService = 2;
+                break;
+
+            case >= 7 and <= 9:
+                workerService = 3;
+                break;
+
+            case >= 10:
+                workerService = 4;
+                break;
+        }
 
         //Calculate break time
-        if (rngBreak <= 3)
-            restingTime = 1;
+        switch(rngBreak)
+        {
+            case <= 3:
+                restingTime = 1;
+                break;
 
-        else if (rngBreak <= 6)
-            restingTime = 2;
+            case >= 4 and <= 6:
+                restingTime = 2;
+                break;
 
-        else if (rngBreak <= 9)
-            restingTime = 3;
-
-        else
-            restingTime = 4;
+            case >= 7 and <= 9:
+                restingTime = 3;
+                break;
+            
+            case >= 10:      
+                restingTime = 4;    
+                break;
+        }
     }
 }
