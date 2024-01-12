@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     GameManager gameManager;
+    [SerializeField]
+    GameObject layoutGroupObject;
+    [SerializeField]
+    GameObject inventoryButtonPrefab;
     [SerializeField]
     TMP_Text debugText1;
     // Start is called before the first frame update
@@ -22,6 +27,9 @@ public class UIManager : MonoBehaviour
             gameManager.money -= cost;
             print(furniture.name + " has been purchased successfully!");  
             print("Money spent: " + cost);
+            
+            var buttonObject = Instantiate(inventoryButtonPrefab, transform.position, Quaternion.identity, layoutGroupObject.transform);
+            buttonObject.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = furniture.GetComponent<SpriteRenderer>().sprite;
         }
         else
         {
@@ -31,9 +39,6 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManager != null)
-        {
-            debugText1.text = "money: " + gameManager.money;
-        }
+        debugText1.text = "Money: " + gameManager.money;
     }
 }

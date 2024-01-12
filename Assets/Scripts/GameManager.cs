@@ -10,12 +10,17 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        money = 100;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        print("Amount of furniture: "+furnitureList.Count);
+        /*
+        for (int i = 0; i < furnitureList.Count; i++)
+        {
+            print("Name: " + furnitureList[i].name + "\nIndex: " + furnitureList.IndexOf(furnitureList[i]));
+        }
+        */
     }
 }
