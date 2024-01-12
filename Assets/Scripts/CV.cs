@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CV : ArbetareBase
 {   
-    [SerializeField]
+    
     int rngSpeed;
     int rngQuality;
     int rngService;
