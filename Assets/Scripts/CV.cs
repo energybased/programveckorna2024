@@ -16,13 +16,9 @@ public class CV : ArbetareBase
         rngQuality = Random.Range(1, 11);
         rngService = Random.Range(1, 11);
         rngBreak = Random.Range(1, 11);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
         //Calculate speed
-        switch(rngSpeed)
+        switch (rngSpeed)
         {
             case <= 3:
                 workerSpeed = 1;
@@ -35,7 +31,7 @@ public class CV : ArbetareBase
             case >= 7 and <= 9:
                 workerSpeed = 3;
                 break;
-            
+
             case >= 10:
                 workerSpeed = 4;
                 break;
@@ -84,7 +80,7 @@ public class CV : ArbetareBase
         }
 
         //Calculate break time
-        switch(rngBreak)
+        switch (rngBreak)
         {
             case <= 3:
                 restingTime = 1;
@@ -97,10 +93,16 @@ public class CV : ArbetareBase
             case >= 7 and <= 9:
                 restingTime = 3;
                 break;
-            
-            case >= 10:      
-                restingTime = 4;    
+
+            case >= 10:
+                restingTime = 4;
                 break;
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+       
     }
 }

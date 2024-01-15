@@ -11,6 +11,5 @@ public class ArbetareBase : MonoBehaviour
     public float workerService;
     public int restingTime;
     public enum race { };
-   
-
+  
 }
