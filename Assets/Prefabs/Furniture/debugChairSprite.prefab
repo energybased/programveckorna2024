@@ -143,7 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e989459c6062449835fdb9fa54c296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  furnitureCost: 5
-  furnitureComfort: 0
-  furnitureDesign: 0
-  furnitureAtmosphere: 0
+  furnitureData: {fileID: 0}
+  furnitureName: Basic Chair

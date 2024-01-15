@@ -1,49 +1,95 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
+using System;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class selectedObjectBehavior : MonoBehaviour
 {
+    public furnitureData furnitureData;
     SpriteRenderer sr;
     GameManager gameManager;
+    UIManager uiManager;
     float currentOpacity;
     float minimumOpacity = 0.25f;
     float maximumOpacity = 0.75f;
     static float t = 0.0f;
+    bool isInTheWay;
     public GameObject originButton;
+
+    int spriteOrientation = 0;
     void Start()
     {
         sr = FindObjectOfType<SpriteRenderer>();
         gameManager = FindObjectOfType<GameManager>();
+        uiManager = FindObjectOfType<UIManager>();
+
+        for (int i = 0; i < uiManager.uiPlacementTips.Length; i++)
+        {
+            var uiToolTip = Instantiate(uiManager.uiPlacementTips[i], new Vector3(transform.position.x -1 + i, transform.position.y + 0.75f + (furnitureData.furnitureSize * 0.5f)  , 0), Quaternion.identity, transform);    
+            uiToolTip.transform.localScale = Vector3.one/furnitureData.furnitureSize;
+        }
     }
     void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(Mathf.Round(mousePos.x * 2f)*0.5f, Mathf.Round(mousePos.y * 2f)*0.5f,0);
-        if(Input.GetKeyDown(KeyCode.Escape))
+        
+        isInTheWay = Physics2D.OverlapBox(transform.position, Vector3.one * furnitureData.furnitureSize/2, 0, LayerMask.GetMask("Furniture"));
+        if(isInTheWay)
         {
-            Destroy(gameObject);
+            sr.color = new Color(0.8f, 0, 0);
+        }
+        else
+        {
+            sr.color = new Color(0, 0.8f, 0);
+            if(Input.GetMouseButtonDown(0)) //Place Object
+            {
+                var newObject = Instantiate(furnitureData.furniturePrefab as GameObject, transform.position, Quaternion.identity);
+                newObject.GetComponent<SpriteRenderer>().sprite = furnitureData.furnitureSprites[spriteOrientation];
+                newObject.GetComponent<furnitureStats>().furnitureData = furnitureData;
+                gameManager.furnitureInventoryList.Remove(gameManager.furnitureInventoryList.Find(obj=>obj.GetComponent<furnitureStats>().furnitureName == furnitureData.furnitureName));
+                gameManager.furniturePlacedList.Add(newObject);
+                Destroy(originButton);
+                Destroy(gameObject);
+                gameManager.CalculateStats();
+                Cursor.visible = true;
+            }
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetKeyDown(KeyCode.E) || Input.mouseScrollDelta.y < 0) //Rotate Clockwise
         {
-            var current = gameManager.furnitureList.Find(obj=>obj.name==sr.sprite.name);
-            if(Physics2D.OverlapBox(new Vector3(transform.position.x,transform.position.y, 0), current.transform.localScale/2, 0, LayerMask.GetMask("Furniture")))
+            if(spriteOrientation >= 3)
             {
-                print("IS IN THE WAY");
+                spriteOrientation = 0;
+                ChangeOrientation(spriteOrientation);
             }
             else
             {
-                print("why");
-                var newObject = Instantiate(current, new Vector3(transform.position.x,transform.position.y, 0), Quaternion.identity);
-                gameManager.furnitureList.Remove(current);
-                Destroy(originButton);
-                Destroy(gameObject);
+                spriteOrientation++;
+                ChangeOrientation(spriteOrientation);
+            }
+        }
+        else if(Input.GetKeyDown(KeyCode.Q) || Input.mouseScrollDelta.y > 0) //Rotate Counter-Clockwise
+        {
+            if(spriteOrientation <= 0)
+            {
+                spriteOrientation = 3;
+                ChangeOrientation(spriteOrientation);
+            }
+            else
+            {
+                spriteOrientation--;
+                ChangeOrientation(spriteOrientation);
             }
         }
 
-        if(sr != null)
+        if(Input.GetKeyDown(KeyCode.Escape)) //Cancel Placement
+        {
+            Destroy(gameObject);
+            Cursor.visible = true;
+        }
+
+        if(sr != null) //Flashing (Opacity ping pong-ing between 0.6 and 0.4)
         {
             currentOpacity = Mathf.Lerp(minimumOpacity, maximumOpacity, t);
             t += 2.5f * Time.deltaTime;
@@ -57,4 +103,9 @@ public class selectedObjectBehavior : MonoBehaviour
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, currentOpacity);
         }
     }
+    void ChangeOrientation(int orientation)
+    {
+        sr.sprite = furnitureData.furnitureSprites[orientation];
+    }
+    
 }

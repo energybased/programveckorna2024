@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Café Stats")]
     public int money;
-    public List<GameObject> furnitureList = new List<GameObject>();
+    public int totalComfort;
+    public int totalDesign;
+    public int totalAtmosphere;
+    [Header("Furniture Objects Lists")]
+    public List<GameObject> furnitureInventoryList = new List<GameObject>();
+    public List<GameObject> furniturePlacedList = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
+    public void CalculateStats()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-        for (int i = 0; i < furnitureList.Count; i++)
+        int comfort = 0, design = 0, atmosphere = 0;
+        for (int i = 0; i < furniturePlacedList.Count; i++)
         {
-            print("Name: " + furnitureList[i].name + "\nIndex: " + furnitureList.IndexOf(furnitureList[i]));
+            comfort += furniturePlacedList[i].GetComponent<furnitureStats>().furnitureData.furnitureComfort;
+            design += furniturePlacedList[i].GetComponent<furnitureStats>().furnitureData.furnitureDesign;
+            atmosphere += furniturePlacedList[i].GetComponent<furnitureStats>().furnitureData.furnitureAtmosphere;
         }
-        */
+        totalComfort = comfort; 
+        totalDesign = design;
+        totalAtmosphere = atmosphere;
     }
 }

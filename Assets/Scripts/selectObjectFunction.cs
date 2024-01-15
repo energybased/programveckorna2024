@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class selectObjectFunction : MonoBehaviour
 {
+    [HideInInspector]
+    public furnitureData furnitureData;
     public void SelectObject(GameObject emptyObject)
     {
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var localSprite = gameObject.transform.GetChild(0).GetComponent<Image>();
-        
-        var selectedObject = Instantiate(emptyObject, mouseWorldPos, Quaternion.identity);
-        selectedObject.AddComponent<SpriteRenderer>().sprite = localSprite.sprite;
-        selectedObject.AddComponent<selectedObjectBehavior>();
-        selectedObject.GetComponent<selectedObjectBehavior>().originButton = gameObject;
+        var objectPreview = Instantiate(emptyObject, mouseWorldPos, Quaternion.identity);
+        objectPreview.transform.localScale = Vector3.one * furnitureData.furnitureSize;
+        objectPreview.AddComponent<SpriteRenderer>().sprite = furnitureData.furnitureSprites[0];
+        objectPreview.AddComponent<selectedObjectBehavior>();
+        objectPreview.GetComponent<selectedObjectBehavior>().originButton = gameObject;
+        objectPreview.GetComponent<selectedObjectBehavior>().furnitureData = furnitureData;
+        Cursor.visible = false;
     }
 }
