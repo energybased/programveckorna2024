@@ -46,6 +46,8 @@ public class Kund : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Sprite newSprite;
 
+   
+
     
     void Start()
     {
@@ -80,6 +82,9 @@ public class Kund : MonoBehaviour
             transform.position =  Vector3.MoveTowards(transform.position, gåUtPos, step);
             StartCoroutine(PåvägUt());
         }   
+
+        
+
     }
 
     void OnTriggerEnter2D (Collider2D Collision)

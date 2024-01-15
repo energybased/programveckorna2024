@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class KundSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
+    public GameObject kundPrefab;
+    [SerializeField]
+    int NumberOfKunder = 0;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
+       
+        if(NumberOfKunder == 0)
+        {
+            SpawnKund();
+        }
         
+    }
+
+    void SpawnKund()
+    {
+        Instantiate(kundPrefab, new Vector3(-0.5f, -8, 1), Quaternion.identity);
+        NumberOfKunder += 1;
     }
 }
