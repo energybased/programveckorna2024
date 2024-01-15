@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: -1493055420, guid: a39a9144622a2e94cb5c451269ec93ac, type: 3}
   - {fileID: -655667824, guid: a39a9144622a2e94cb5c451269ec93ac, type: 3}
   uiPreviewSprite: {fileID: -1493055420, guid: a39a9144622a2e94cb5c451269ec93ac, type: 3}
-  furnitureSize: 1
+  furnitureSize: {x: 1, y: 1}
   furnitureName: Chair 1
   furnitureCost: 15
   furnitureComfort: 5

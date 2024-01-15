@@ -10,7 +10,7 @@ public class furnitureData : ScriptableObject
     public Object furniturePrefab;
     public Sprite[] furnitureSprites;
     public Sprite uiPreviewSprite;
-    public int furnitureSize;
+    public Vector2 furnitureSize;
     [Header("Furniture Stats")]
     public string furnitureName;
     public int furnitureCost;

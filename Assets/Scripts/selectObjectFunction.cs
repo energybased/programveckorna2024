@@ -8,7 +8,7 @@ public class selectObjectFunction : MonoBehaviour
     {
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var objectPreview = Instantiate(emptyObject, mouseWorldPos, Quaternion.identity);
-        objectPreview.transform.localScale = Vector3.one * furnitureData.furnitureSize;
+        objectPreview.transform.localScale = new Vector2(furnitureData.furnitureSize.x, furnitureData.furnitureSize.y);
         objectPreview.AddComponent<SpriteRenderer>().sprite = furnitureData.furnitureSprites[0];
         objectPreview.AddComponent<selectedObjectBehavior>();
         objectPreview.GetComponent<selectedObjectBehavior>().originButton = gameObject;
