@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2.9768, y: 40.4849}
+  m_SizeDelta: {x: 3.5, y: 40.5}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &7231488420191962559
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 4585800729357611112, guid: 5df7d2dc0cba7d242a43237b9ee51554, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2413806693520163455, guid: df9704f1646cffb4a981a01dda81d391, type: 3}
+  m_Sprite: {fileID: -2425092003240466733, guid: 7274e5d7dcbddef42ac34fc5f918e75a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -293,7 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5630983451048647517}
-  - component: {fileID: 6430095492461696361}
+  - component: {fileID: 7797353055895534504}
   m_Layer: 5
   m_Name: clockUI
   m_TagString: Untagged
@@ -323,7 +323,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6430095492461696361
+--- !u!114 &7797353055895534504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -332,6 +332,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3037549049780620133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0390c13826a905c49a4d5cc38762fa34, type: 3}
+  m_Script: {fileID: 11500000, guid: 1282c20d56ceff44f9df04625ac02e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
