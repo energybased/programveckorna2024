@@ -25,8 +25,8 @@ public class selectedObjectBehavior : MonoBehaviour
 
         for (int i = 0; i < uiManager.uiPlacementTips.Length; i++)
         {
-            var uiToolTip = Instantiate(uiManager.uiPlacementTips[i], new Vector3(transform.position.x -1 + i, transform.position.y + 0.75f + (furnitureData.furnitureSize * 0.5f)  , 0), Quaternion.identity, transform);    
-            uiToolTip.transform.localScale = Vector3.one/furnitureData.furnitureSize;
+            var uiToolTip = Instantiate(uiManager.uiPlacementTips[i], new Vector3(transform.position.x -1 + i, transform.position.y + 0.75f + (furnitureData.furnitureSize.y * 0.5f)  , 0), Quaternion.identity, transform);    
+            uiToolTip.transform.localScale = Vector3.one/new Vector2(furnitureData.furnitureSize.x, furnitureData.furnitureSize.y);
         }
     }
     void Update()

@@ -13,6 +13,16 @@ public class GameManager : MonoBehaviour
     public List<GameObject> furnitureInventoryList = new List<GameObject>();
     public List<GameObject> furniturePlacedList = new List<GameObject>();
 
+    void Update()
+    {
+        for (int i = 0; i < furniturePlacedList.Count; i++)
+        {
+            if(furniturePlacedList[i] == null)
+            {
+                furniturePlacedList.RemoveAt(i);
+            }
+        }
+    }
     public void CalculateStats()
     {
         int comfort = 0, design = 0, atmosphere = 0;

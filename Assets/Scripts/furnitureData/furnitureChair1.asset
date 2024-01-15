@@ -16,7 +16,7 @@ MonoBehaviour:
   furnitureSprites:
   - {fileID: 21300000, guid: 9534a1ca2ce3056428c77908becde87d, type: 3}
   uiPreviewSprite: {fileID: 21300000, guid: 9534a1ca2ce3056428c77908becde87d, type: 3}
-  furnitureSize: 1
+  furnitureSize: {x: 1, y: 1}
   furnitureName: Basic Chair
   furnitureCost: 5
   furnitureComfort: 2

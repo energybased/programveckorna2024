@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: -721191169, guid: a39a9144622a2e94cb5c451269ec93ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -145,6 +145,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   furnitureData: {fileID: 0}
   furnitureName: Chair 1
-  furnitureComfort: 5
-  furnitureDesign: 5
-  furnitureAtmosphere: 5
