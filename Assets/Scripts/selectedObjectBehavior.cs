@@ -34,7 +34,7 @@ public class selectedObjectBehavior : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(Mathf.Round(mousePos.x * 2f)*0.5f, Mathf.Round(mousePos.y * 2f)*0.5f,0);
         
-        isInTheWay = Physics2D.OverlapBox(transform.position, Vector3.one * furnitureData.furnitureSize/2, 0, LayerMask.GetMask("Furniture"));
+        isInTheWay = Physics2D.OverlapBox(transform.position, furnitureData.furnitureSize/2, 0, LayerMask.GetMask("Furniture"));
         if(isInTheWay)
         {
             sr.color = new Color(0.8f, 0, 0);
