@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Mathematics;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
@@ -10,15 +9,37 @@ public class ArbetareManager : ArbetareBase
     public List<GameObject> arbetareList = new List<GameObject>();
     public List<GameObject> v‰ntarPÂAnst‰llning = new List<GameObject>();
     public List<GameObject> tiredWorker = new List<GameObject>();
+    public List<GameObject> busyWorking = new List<GameObject>();
+
+    public List<GameObject> availableStations = new List<GameObject>();
+    public List<GameObject> usedStations = new List<GameObject>();
+
     public Canvas guys;
     public GameObject worker;
     public GameObject CV;
 
+    GameObject kassa;
+    [SerializeField]
+    GameObject startPos;
+
     public float totalSpeed;
     public float totalQuality;
     public float totalService;
-
     public int totalTired;
+    public int totalGuys;
+
+    int chooseWorker;
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "kund" && kassa.GetComponent<kassaSkript>().busy == true)
+        {
+            chooseWorker = UnityEngine.Random.Range(0,arbetareList.Count);
+            busyWorking.Add(arbetareList[chooseWorker]);
+            arbetareList[chooseWorker].GetComponent<ArbetareScript>().goToTills();
+            arbetareList.RemoveAt(chooseWorker);
+        }
+    }
 
     public void newWorker()
     {
@@ -57,6 +78,9 @@ public class ArbetareManager : ArbetareBase
 
     public void restoreGuyLists()
     {
+        var temp = arbetareList.Last();
+        temp.transform.position = Vector3.MoveTowards(temp.transform.position, startPos.transform.position, 1000);
+        
         foreach (var GameObject in v‰ntarPÂAnst‰llning)
         {
             Destroy(GameObject);
@@ -75,25 +99,21 @@ public class ArbetareManager : ArbetareBase
         totalSpeed = 0;
 
         for (int i = 0; i < arbetareList.Count; i++)
-        {
-            if(i < arbetareList.Count)
-            {
-                totalSpeed += arbetareList[i].GetComponent<ArbetareScript>().workerSpeed;
-                totalQuality += arbetareList[i].GetComponent<ArbetareScript>().workerQuality;
-                totalService += arbetareList[i].GetComponent<ArbetareScript>().workerService;
-            }
- 
-            if(i < tiredWorker.Count)
-            {
-                totalSpeed += tiredWorker[i].GetComponent<ArbetareScript>().workerSpeed;
-                totalQuality += tiredWorker[i].GetComponent<ArbetareScript>().workerQuality;
-                totalService += tiredWorker[i].GetComponent<ArbetareScript>().workerService;
-            }
+        { 
+            totalSpeed += arbetareList[i].GetComponent<ArbetareScript>().workerSpeed;
+            totalQuality += arbetareList[i].GetComponent<ArbetareScript>().workerQuality;
+            totalService += arbetareList[i].GetComponent<ArbetareScript>().workerService;
+        }
+        for (int i = 0; i < tiredWorker.Count; i++)
+        { 
+             totalSpeed += tiredWorker[i].GetComponent<ArbetareScript>().workerSpeed;
+             totalQuality += tiredWorker[i].GetComponent<ArbetareScript>().workerQuality;
+             totalService += tiredWorker[i].GetComponent<ArbetareScript>().workerService;
         }
 
-        totalSpeed = totalSpeed / arbetareList.Count + tiredWorker.Count;
-        totalQuality = totalQuality / arbetareList.Count + tiredWorker.Count;
-        totalService = totalService / arbetareList.Count + tiredWorker.Count;
+        totalSpeed = totalSpeed / totalGuys;
+        totalQuality = totalQuality / totalGuys;
+        totalService = totalService / totalGuys;
     }
 
     // Start is called before the first frame update
@@ -103,6 +123,9 @@ public class ArbetareManager : ArbetareBase
 
         arbetareList.Clear();
         tiredWorker.Clear();
+        busyWorking.Clear();
+
+        kassa = GameObject.Find("KassaPosition");
     }
 
     // Update is called once per frame
@@ -123,11 +146,13 @@ public class ArbetareManager : ArbetareBase
         {
             if (tiredWorker[i].GetComponent<ArbetareScript>().tiredHappened == false)
             {
-                totalTired += 1;
+                totalTired -= 1;
                 arbetareList.Add(tiredWorker[i]);
                 tiredWorker.RemoveAt(i);
                 countStats();
             }
         }
     }
+
+    
 }

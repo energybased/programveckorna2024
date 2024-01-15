@@ -8,7 +8,12 @@ public class ArbetareScript : ArbetareBase
     public int timeUntilBreak; //hur långt brodern arbetar innan trötthet
     public bool tiredHappened = false; //kollar om bror har blivit trött
 
-    CV cv; 
+    ArbetareManager arbManage;
+    CV cv;
+
+    GameObject kassa;
+    float cookTime;
+    float serviceTime;
 
     private void OnTriggerStay2D(Collider2D collider)
     {
@@ -17,15 +22,50 @@ public class ArbetareScript : ArbetareBase
             print("go on break");
             Invoke("onBreak", 15f);
         }
+
+    }
+
+    public void goToTills()
+    {
+       if(kassa.GetComponent<kassaSkript>().busy == false)
+       {
+            kassa.GetComponent<kassaSkript>().busy = true;
+            Vector3.MoveTowards(transform.position, kassa.transform.position, 100);
+            serviceTime = 2f;
+            for (int i = 0; i < workerService; i++)
+            {
+                serviceTime -= 0.3f;
+            }
+            if(tiredHappened == true)
+            {
+                serviceTime *= 2;
+            }
+            Invoke("cook", serviceTime);
+       }
+       
+    }
+
+    public void cook()
+    {
+        
+
+        Vector3.MoveTowards(transform.position, kassa.transform.position, 100);
+        serviceTime = 2f;
+        for (int i = 0; i < workerService; i++)
+        {
+            serviceTime -= 0.3f;
+        }
+        if (tiredHappened == true)
+        {
+            serviceTime *= 2;
+        }
+        Invoke("cook", serviceTime);
     }
 
     public void onBreak() //coroutine medans man är på rast
     {
         breakTimer = 0;
         tiredHappened = false;
-        workerSpeed *= 2f;
-        workerQuality *= 2f;
-        workerService *= 2f;
     }
 
     private void stats()
@@ -35,7 +75,7 @@ public class ArbetareScript : ArbetareBase
         workerService = cv.workerService;
         restingTime = cv.restingTime;
 
-        for (int i = 0; i < restingTime; i++)
+        for (float i = 0; i < restingTime; i++)
         {
             timeUntilBreak += 30;
         }
@@ -48,9 +88,13 @@ public class ArbetareScript : ArbetareBase
     {
         tiredHappened = false;
 
+        kassa = GameObject.Find("KassaPosition");
+        arbManage = GetComponent<ArbetareManager>();
+
         cv = GetComponentInChildren<CV>();
 
         Invoke("stats", 1f);
+
     }
 
     //Update
@@ -61,11 +105,10 @@ public class ArbetareScript : ArbetareBase
         if (breakTimer >= 2 && breakTimer >= timeUntilBreak && tiredHappened == false)
         {
             print("bro is tired");
-            workerSpeed *= 0.5f;
-            workerQuality *= 0.5f;
-            workerService *= 0.5f;
 
             tiredHappened = true;
         }
+
+        
     }
 }

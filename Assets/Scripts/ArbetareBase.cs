@@ -10,6 +10,6 @@ public class ArbetareBase : MonoBehaviour
     public float workerQuality;
     public float workerService;
     public int restingTime;
-    public enum race { };
+    
   
 }
