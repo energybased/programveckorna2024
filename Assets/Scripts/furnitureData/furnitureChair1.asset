@@ -15,6 +15,9 @@ MonoBehaviour:
   furniturePrefab: {fileID: 8166403865794129900, guid: d954a2ec15f606949a9782020ae7eba4, type: 3}
   furnitureSprites:
   - {fileID: 21300000, guid: 9534a1ca2ce3056428c77908becde87d, type: 3}
+  - {fileID: 21300000, guid: 9534a1ca2ce3056428c77908becde87d, type: 3}
+  - {fileID: 21300000, guid: 9534a1ca2ce3056428c77908becde87d, type: 3}
+  - {fileID: 21300000, guid: 9534a1ca2ce3056428c77908becde87d, type: 3}
   uiPreviewSprite: {fileID: 21300000, guid: 9534a1ca2ce3056428c77908becde87d, type: 3}
   furnitureSize: {x: 1, y: 1}
   furnitureName: Basic Chair

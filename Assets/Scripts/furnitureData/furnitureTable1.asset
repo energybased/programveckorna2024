@@ -15,6 +15,9 @@ MonoBehaviour:
   furniturePrefab: {fileID: 5752591265269324895, guid: e731de84f3e8082479f2af1c94959929, type: 3}
   furnitureSprites:
   - {fileID: 21300000, guid: 27aaf41612633b444bd5275760166561, type: 3}
+  - {fileID: 21300000, guid: 27aaf41612633b444bd5275760166561, type: 3}
+  - {fileID: 21300000, guid: 27aaf41612633b444bd5275760166561, type: 3}
+  - {fileID: 21300000, guid: 27aaf41612633b444bd5275760166561, type: 3}
   uiPreviewSprite: {fileID: 21300000, guid: 27aaf41612633b444bd5275760166561, type: 3}
   furnitureSize: {x: 2, y: 2}
   furnitureName: Basic Table
