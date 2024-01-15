@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3971234c67e44d9e8edbf420d9f14, type: 3}
+  m_Name: furnitureChair1
+  m_EditorClassIdentifier: 
+  furniturePrefab: {fileID: 8166403865794129900, guid: d954a2ec15f606949a9782020ae7eba4, type: 3}
+  furnitureSprites:
+  - {fileID: 21300000, guid: 9534a1ca2ce3056428c77908becde87d, type: 3}
+  uiPreviewSprite: {fileID: 21300000, guid: 9534a1ca2ce3056428c77908becde87d, type: 3}
+  furnitureSize: 1
+  furnitureName: Basic Chair
+  furnitureCost: 5
+  furnitureComfort: 2
+  furnitureDesign: 2
+  furnitureAtmosphere: 1
