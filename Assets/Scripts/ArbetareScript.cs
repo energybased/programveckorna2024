@@ -1,4 +1,5 @@
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ArbetareScript : ArbetareBase
@@ -33,19 +34,6 @@ public class ArbetareScript : ArbetareBase
             print("fick kund");
             arbManage.kassaBusy = true; 
             movingTill = true;
-            if (movingTill == false)
-            {
-                for (int i = 0; i < workerService; i++)
-                {
-                    serviceTime = 2f;
-                    serviceTime -= 0.3f;
-                }
-                if (tiredHappened == true)
-                {
-                    serviceTime *= 2;
-                }
-                Invoke("cook", serviceTime);
-            }
         }
         else
         {
@@ -61,35 +49,15 @@ public class ArbetareScript : ArbetareBase
         }
         else
         {
-            int temp = Random.Range(1, arbManage.availableStations.Count);
-            arbManage.usedStations.Add(arbManage.availableStations[temp]);
-            arbManage.availableStations.RemoveAt(temp);
+            arbManage.usedStations.Add(arbManage.availableStations[0]);
+            arbManage.availableStations.RemoveAt(0);
             movingTill = true;
-            if (movingTill == false)
-            {
-                arbManage.kassaBusy = false;
-                cookTime = 2f;
-                for (int i = 0; i < workerSpeed; i++)
-                {
-                    cookTime -= 0.3f;
-                }
-                if (tiredHappened == true)
-                {
-                    cookTime *= 2;
-                }
-                Invoke("giveDrink", cookTime);
-            }
         }
     }
 
     private void giveDrink()
     {
         movingDropOff = true;
-        if(movingDropOff == false)
-        {
-            arbManage.arbetareList.Add(gameObject);
-            arbManage.busyWorking.Remove(gameObject);
-        }
     }
 
     public void onBreak() //coroutine medans man är på rast
@@ -138,21 +106,50 @@ public class ArbetareScript : ArbetareBase
 
         if (movingTill == true)
         {
+            
             print("går till kunden");
             transform.position = Vector3.MoveTowards(transform.position, arbManage.kassaPos.transform.position, 1000);
+            print("gick till kunden");
+            serviceTime = 2f;
+            for (int i = 0; i < workerService; i++)
+            {
+
+                serviceTime -= 0.3f;
+            }
+            if (tiredHappened == true)
+            {
+                serviceTime *= 2;
+            }
+            Invoke("cook", serviceTime);
             movingTill = false;
         }
 
         if(movingCook == true)
         {
-            Vector3.MoveTowards(transform.position, arbManage.usedStations.Last().transform.position, 100);
+            transform.position = Vector3.MoveTowards(transform.position, arbManage.usedStations.Last().transform.position, 100);
             movingCook = false;
+            arbManage.kassaBusy = false;
+            cookTime = 2f;
+            for (int i = 0; i < workerSpeed; i++)
+            {
+                cookTime -= 0.3f;
+            }
+            if (tiredHappened == true)
+            {
+                cookTime *= 2;
+            }
+            Invoke("giveDrink", cookTime);
         }
 
         if(movingDropOff == true)
         {
-            Vector3.MoveTowards(transform.position, arbManage.dropOffPos.transform.position, 100);
+            transform.position = Vector3.MoveTowards(transform.position, arbManage.dropOffPos.transform.position, 100);
+            arbManage.availableStations.Add(arbManage.usedStations[0]);
+            arbManage.usedStations.RemoveAt(0);
             movingDropOff = false;
+            arbManage.arbetareList.Add(gameObject);
+            arbManage.busyWorking.Remove(gameObject);
+            arbManage.kund.ordered = false;
         }
     }
 }

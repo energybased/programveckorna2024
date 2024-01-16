@@ -842,6 +842,7 @@ GameObject:
   - component: {fileID: 1348149689}
   - component: {fileID: 1348149691}
   - component: {fileID: 1348149692}
+  - component: {fileID: 1348149693}
   m_Layer: 0
   m_Name: le kund
   m_TagString: kund
@@ -978,6 +979,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1348149693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348149688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d56aa700945fa4d88dcc6f66c55901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ordered: 0
 --- !u!1 &1629747442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,6 +1226,7 @@ MonoBehaviour:
   totalTired: 0
   totalGuys: 0
   kassaBusy: 0
+  kund: {fileID: 0}
 --- !u!114 &1991094522
 MonoBehaviour:
   m_ObjectHideFlags: 0

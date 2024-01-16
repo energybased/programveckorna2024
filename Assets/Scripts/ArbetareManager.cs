@@ -31,11 +31,14 @@ public class ArbetareManager : ArbetareBase
     int chooseWorker;
 
     public bool kassaBusy = false;
-    
+
+    public maxTempKundSkript kund;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "kund" && kassaBusy == false)
+        if (collision.gameObject.tag == "kund" && kassaBusy == false && kund.ordered == false)
         {
+            kund.ordered = true;
             print("kund har kommit");
             chooseWorker = UnityEngine.Random.Range(0,arbetareList.Count);
             busyWorking.Add(arbetareList[chooseWorker]);
@@ -44,6 +47,7 @@ public class ArbetareManager : ArbetareBase
         }
     }
 
+    
     public void newWorker()
     {
         guys.enabled = true;
@@ -127,6 +131,9 @@ public class ArbetareManager : ArbetareBase
         arbetareList.Clear();
         tiredWorker.Clear();
         busyWorking.Clear();
+        
+        kund = FindObjectOfType<maxTempKundSkript>();
+        
     }
 
     // Update is called once per frame
