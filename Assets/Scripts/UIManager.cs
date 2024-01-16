@@ -28,7 +28,6 @@ public class UIManager : MonoBehaviour
     TMP_Text debugText3;
     [SerializeField]
     TMP_Text debugText4;
-    // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -66,7 +65,7 @@ public class UIManager : MonoBehaviour
         else
         {
             cam.transform.position = Vector3.Lerp(cam.transform.position, player.gameObject.transform.position, Time.deltaTime * 4);
-            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 5, Time.deltaTime * 3);
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 7, Time.deltaTime * 3);
             playerCanMove = true;
         }
 

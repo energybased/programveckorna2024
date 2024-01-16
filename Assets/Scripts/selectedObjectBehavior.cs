@@ -31,6 +31,7 @@ public class selectedObjectBehavior : MonoBehaviour
     }
     void Update()
     {
+        
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(Mathf.Round(mousePos.x * 2f)*0.5f, Mathf.Round(mousePos.y * 2f)*0.5f,0);
         
