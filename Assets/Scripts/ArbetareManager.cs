@@ -18,9 +18,9 @@ public class ArbetareManager : ArbetareBase
     public GameObject worker;
     public GameObject CV;
 
-    GameObject kassa;
-    [SerializeField]
-    GameObject startPos;
+    public GameObject startPos;
+    public GameObject kassaPos;
+    public GameObject dropOffPos;
 
     public float totalSpeed;
     public float totalQuality;
@@ -30,13 +30,16 @@ public class ArbetareManager : ArbetareBase
 
     int chooseWorker;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public bool kassaBusy = false;
+    
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "kund" && kassa.GetComponent<kassaSkript>().busy == true)
+        if (collision.gameObject.tag == "kund" && kassaBusy == false)
         {
+            print("kund har kommit");
             chooseWorker = UnityEngine.Random.Range(0,arbetareList.Count);
             busyWorking.Add(arbetareList[chooseWorker]);
-            arbetareList[chooseWorker].GetComponent<ArbetareScript>().goToTills();
+            busyWorking.Last().GetComponent<ArbetareScript>().goToTills();
             arbetareList.RemoveAt(chooseWorker);
         }
     }
@@ -75,9 +78,9 @@ public class ArbetareManager : ArbetareBase
         v‰ntarPÂAnst‰llning.RemoveAt(2);
         restoreGuyLists();
     }
-
     public void restoreGuyLists()
     {
+        totalGuys += 1;
         var temp = arbetareList.Last();
         temp.transform.position = Vector3.MoveTowards(temp.transform.position, startPos.transform.position, 1000);
         
@@ -89,7 +92,7 @@ public class ArbetareManager : ArbetareBase
         v‰ntarPÂAnst‰llning.Clear();
         guys.enabled = false;
 
-        Invoke("countStats", 0.1f);
+        Invoke("countStats", 0.5f);
     }
 
     public void countStats()
@@ -104,11 +107,11 @@ public class ArbetareManager : ArbetareBase
             totalQuality += arbetareList[i].GetComponent<ArbetareScript>().workerQuality;
             totalService += arbetareList[i].GetComponent<ArbetareScript>().workerService;
         }
-        for (int i = 0; i < tiredWorker.Count; i++)
-        { 
-             totalSpeed += tiredWorker[i].GetComponent<ArbetareScript>().workerSpeed;
-             totalQuality += tiredWorker[i].GetComponent<ArbetareScript>().workerQuality;
-             totalService += tiredWorker[i].GetComponent<ArbetareScript>().workerService;
+        for (int i = 0; i < busyWorking.Count; i++)
+        {
+            totalSpeed += busyWorking[i].GetComponent<ArbetareScript>().workerSpeed;
+            totalQuality += busyWorking[i].GetComponent<ArbetareScript>().workerQuality;
+            totalService += busyWorking[i].GetComponent<ArbetareScript>().workerService;
         }
 
         totalSpeed = totalSpeed / totalGuys;
@@ -124,8 +127,6 @@ public class ArbetareManager : ArbetareBase
         arbetareList.Clear();
         tiredWorker.Clear();
         busyWorking.Clear();
-
-        kassa = GameObject.Find("KassaPosition");
     }
 
     // Update is called once per frame
@@ -135,24 +136,18 @@ public class ArbetareManager : ArbetareBase
         {
            if(arbetareList[i].GetComponent<ArbetareScript>().tiredHappened)
            {
-                totalTired += 1;
                 tiredWorker.Add(arbetareList[i]);
-                arbetareList.RemoveAt(i);
-                countStats();
            }
         }
+
+        totalTired = tiredWorker.Count;
 
         for (int i = 0; i < tiredWorker.Count; i++)
         {
             if (tiredWorker[i].GetComponent<ArbetareScript>().tiredHappened == false)
             {
-                totalTired -= 1;
-                arbetareList.Add(tiredWorker[i]);
                 tiredWorker.RemoveAt(i);
-                countStats();
             }
         }
     }
-
-    
 }

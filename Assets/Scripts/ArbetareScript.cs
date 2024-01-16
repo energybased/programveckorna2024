@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ArbetareScript : ArbetareBase
@@ -11,55 +10,86 @@ public class ArbetareScript : ArbetareBase
     ArbetareManager arbManage;
     CV cv;
 
-    GameObject kassa;
     float cookTime;
     float serviceTime;
 
+    bool movingTill = false;
+    bool movingCook = false;
+    bool movingDropOff = false;
+
     private void OnTriggerStay2D(Collider2D collider)
     {
-        if (Input.GetKeyDown(KeyCode.F) && collider.gameObject.tag == "boss" && tiredHappened == true)
+        if (Input.GetKeyDown(KeyCode.F) && collider.gameObject.tag == "Player" && tiredHappened == true)
         {
             print("go on break");
             Invoke("onBreak", 15f);
         }
-
     }
 
     public void goToTills()
     {
-       if(kassa.GetComponent<kassaSkript>().busy == false)
-       {
-            kassa.GetComponent<kassaSkript>().busy = true;
-            Vector3.MoveTowards(transform.position, kassa.transform.position, 100);
-            serviceTime = 2f;
-            for (int i = 0; i < workerService; i++)
+        if (arbManage.kassaBusy == false)
+        {
+            print("fick kund");
+            arbManage.kassaBusy = true; 
+            movingTill = true;
+            if (movingTill == false)
             {
-                serviceTime -= 0.3f;
+                for (int i = 0; i < workerService; i++)
+                {
+                    serviceTime = 2f;
+                    serviceTime -= 0.3f;
+                }
+                if (tiredHappened == true)
+                {
+                    serviceTime *= 2;
+                }
+                Invoke("cook", serviceTime);
             }
-            if(tiredHappened == true)
-            {
-                serviceTime *= 2;
-            }
-            Invoke("cook", serviceTime);
-       }
-       
+        }
+        else
+        {
+            Invoke("goToTills", 2f);
+        }
     }
 
     public void cook()
     {
-        
+        if(arbManage.availableStations == null)
+        {
+            Invoke("cook", 2f);
+        }
+        else
+        {
+            int temp = Random.Range(1, arbManage.availableStations.Count);
+            arbManage.usedStations.Add(arbManage.availableStations[temp]);
+            arbManage.availableStations.RemoveAt(temp);
+            movingTill = true;
+            if (movingTill == false)
+            {
+                arbManage.kassaBusy = false;
+                cookTime = 2f;
+                for (int i = 0; i < workerSpeed; i++)
+                {
+                    cookTime -= 0.3f;
+                }
+                if (tiredHappened == true)
+                {
+                    cookTime *= 2;
+                }
+                Invoke("giveDrink", cookTime);
+            }
+        }
+    }
 
-        Vector3.MoveTowards(transform.position, kassa.transform.position, 100);
-        serviceTime = 2f;
-        for (int i = 0; i < workerService; i++)
+    private void giveDrink()
+    {
+        movingDropOff = true;
+        if(movingDropOff == false)
         {
-            serviceTime -= 0.3f;
+            arbManage.arbetareList.Add(gameObject);
+            arbManage.busyWorking.Remove(gameObject);
         }
-        if (tiredHappened == true)
-        {
-            serviceTime *= 2;
-        }
-        Invoke("cook", serviceTime);
     }
 
     public void onBreak() //coroutine medans man är på rast
@@ -87,14 +117,11 @@ public class ArbetareScript : ArbetareBase
     void Start()
     {
         tiredHappened = false;
-
-        kassa = GameObject.Find("KassaPosition");
-        arbManage = GetComponent<ArbetareManager>();
-
+        
+        arbManage = FindObjectOfType<ArbetareManager>();
         cv = GetComponentInChildren<CV>();
 
         Invoke("stats", 1f);
-
     }
 
     //Update
@@ -109,6 +136,23 @@ public class ArbetareScript : ArbetareBase
             tiredHappened = true;
         }
 
-        
+        if (movingTill == true)
+        {
+            print("går till kunden");
+            transform.position = Vector3.MoveTowards(transform.position, arbManage.kassaPos.transform.position, 1000);
+            movingTill = false;
+        }
+
+        if(movingCook == true)
+        {
+            Vector3.MoveTowards(transform.position, arbManage.usedStations.Last().transform.position, 100);
+            movingCook = false;
+        }
+
+        if(movingDropOff == true)
+        {
+            Vector3.MoveTowards(transform.position, arbManage.dropOffPos.transform.position, 100);
+            movingDropOff = false;
+        }
     }
 }
