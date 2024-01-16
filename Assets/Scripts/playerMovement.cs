@@ -5,28 +5,32 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
    
-[SerializeField]
-Rigidbody2D rb2d;
+   Rigidbody2D rb2d;
+   UIManager uiManager;
 
-float horizontal;
-float vertical;
+   float horizontal;
+   float vertical;
 
-public int runSpeed;
+   public int runSpeed;
 
-void Start ()
-{
-   rb2d = GetComponent<Rigidbody2D>(); 
-}
+   void Start ()
+   {
+      rb2d = FindObjectOfType<Rigidbody2D>(); 
+      uiManager = FindObjectOfType<UIManager>(); 
+   }
 
-void Update ()
-{
-   horizontal = Input.GetAxisRaw("Horizontal");
-   vertical = Input.GetAxisRaw("Vertical"); 
-}
+   void Update ()
+   {
+      horizontal = Input.GetAxisRaw("Horizontal");
+      vertical = Input.GetAxisRaw("Vertical"); 
+   }
 
-private void FixedUpdate()
-{  
-   rb2d.velocity =(new Vector2(horizontal, vertical).normalized) * runSpeed;
-}
+   private void FixedUpdate()
+   {  
+      if(uiManager.playerCanMove)
+      {
+         rb2d.velocity = new Vector2(horizontal, vertical).normalized * runSpeed;
+      }
+   }
    
 }

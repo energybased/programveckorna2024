@@ -8,10 +8,11 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     GameManager gameManager;
-    [SerializeField]
-    GameObject darkenObject;
-    [SerializeField]
-    GameObject uiClipboard;
+    Animator animator;
+    Camera cam;
+    bool spotlightPlayer;
+    GameObject player;
+    public bool playerCanMove;
     [SerializeField]
     GameObject layoutGroupObject;
     [SerializeField]
@@ -31,6 +32,9 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        animator = FindObjectOfType<Animator>();
+        player = GameObject.FindWithTag("Player");
+        cam = FindObjectOfType<Camera>();
     }
     public void PurchaseObject(furnitureData furnitureData)
     {
@@ -53,17 +57,33 @@ public class UIManager : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(spotlightPlayer)
         {
-            if(!uiClipboard.GetComponent<Animator>().GetBool("isClipboardOpen"))
+            cam.transform.position = Vector3.Lerp(cam.transform.position, player.gameObject.transform.position - new Vector3(3.125f, 0, 100), Time.deltaTime  * 8);
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 3.5f, Time.deltaTime * 2);
+            playerCanMove = false;
+        }
+        else
+        {
+            cam.transform.position = Vector3.Lerp(cam.transform.position, player.gameObject.transform.position, Time.deltaTime * 4);
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 5, Time.deltaTime * 3);
+            playerCanMove = true;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            if(animator.GetBool("isClipboardOpen") == false)
             {
-                uiClipboard.GetComponent<Animator>().SetTrigger("toggleClipboard");
-                uiClipboard.GetComponent<Animator>().SetBool("isClipboardOpen", true);
+                spotlightPlayer = true;
+                animator.SetBool("isClipboardOpen", true);
+                animator.SetTrigger("toggleClipboard");
+                
             }
-            else
+            else if(animator.GetBool("isClipboardOpen") == true)
             {
-                uiClipboard.GetComponent<Animator>().SetTrigger("toggleClipboard");
-                uiClipboard.GetComponent<Animator>().SetBool("isClipboardOpen", false);
+                spotlightPlayer = false;
+                animator.SetBool("isClipboardOpen", false);
+                animator.SetTrigger("toggleClipboard");
             }
         }
         if(Input.GetMouseButton(1))
