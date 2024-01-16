@@ -15,7 +15,7 @@ public class playerMovement : MonoBehaviour
 
    void Start ()
    {
-      rb2d = FindObjectOfType<Rigidbody2D>(); 
+      rb2d = gameObject.GetComponent<Rigidbody2D>(); 
       uiManager = FindObjectOfType<UIManager>(); 
    }
 
