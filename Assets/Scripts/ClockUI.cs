@@ -8,10 +8,14 @@ public class ClockUI : MonoBehaviour
 {
 
     private const float REAL_SECONDS_PER_INGAME_DAY = 960f;
+    private const float daytime_length = 720f;
+    private const float nighttime_length = 240f;
+    public bool isday = true;
+
 
     private Transform clockHandTransform;
     private TextMeshProUGUI dayText;
-    private float day;
+    public float day;
     int numDays = 1;
 
     private void Awake()
@@ -23,16 +27,32 @@ public class ClockUI : MonoBehaviour
 
     private void Update()
     {
-        day += Time.deltaTime / REAL_SECONDS_PER_INGAME_DAY;
+        if (isday == true)
+        {
+            day += Time.deltaTime / daytime_length;
+        }
+        else
+        {
+            day += Time.deltaTime / nighttime_length;
+        }
+        
 
         float dayNormalized = day % 1f;
 
-        float rotationDegreesPerDay = 720f;
+        float rotationDegreesPerDay = 360f;
         clockHandTransform.eulerAngles = new Vector3(0, 0, -dayNormalized * rotationDegreesPerDay);
 
         if (day >= 1)
         {
-            numDays++;
+            if (isday == true)
+            {
+                isday = false;
+            }
+            else
+            {
+                isday = true;
+                numDays++;
+            }
             day = 0;
             dayText.text = "Day " + numDays;
         }
