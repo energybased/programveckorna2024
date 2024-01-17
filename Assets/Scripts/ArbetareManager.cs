@@ -28,7 +28,6 @@ public class ArbetareManager : ArbetareBase
     public int totalTired;
     public int totalGuys;
 
-    int chooseWorker;
 
     public bool kassaBusy = false;
 
@@ -36,14 +35,26 @@ public class ArbetareManager : ArbetareBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "kund" && kassaBusy == false && kund.ordered == false)
+        if (collision.gameObject.tag == "kund" && kassaBusy == false)
         {
-            kund.ordered = true;
-            print("kund har kommit");
-            chooseWorker = UnityEngine.Random.Range(0,arbetareList.Count);
-            busyWorking.Add(arbetareList[chooseWorker]);
-            busyWorking.Last().GetComponent<ArbetareScript>().goToTills();
-            arbetareList.RemoveAt(chooseWorker);
+            kund = collision.GetComponent<maxTempKundSkript>();
+            if(kund.ordered == false)
+            {
+                kund.ordered = true;
+                print("kund har kommit");
+                
+                busyWorking.Add(arbetareList[0]);
+                if (kassaBusy == false)
+                {
+                    busyWorking.Last().GetComponent<ArbetareScript>().goToTills();
+                }
+                else
+                {
+                    busyWorking.Last().GetComponent<ArbetareScript>().repeatUntilAwesome();
+                }
+
+                arbetareList.RemoveAt(0);
+            }
         }
     }
 
@@ -131,8 +142,6 @@ public class ArbetareManager : ArbetareBase
         arbetareList.Clear();
         tiredWorker.Clear();
         busyWorking.Clear();
-        
-        kund = FindObjectOfType<maxTempKundSkript>();
         
     }
 

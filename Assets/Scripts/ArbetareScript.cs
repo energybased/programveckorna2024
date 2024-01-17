@@ -12,7 +12,7 @@ public class ArbetareScript : ArbetareBase
     CV cv;
 
     float cookTime;
-    float serviceTime;
+    public float serviceTime;
 
     bool movingTill = false;
     bool movingCook = false;
@@ -27,6 +27,22 @@ public class ArbetareScript : ArbetareBase
         }
     }
 
+    public void repeatUntilAwesome()
+    {
+        if(arbManage.kassaBusy == false)
+        {
+            print("going 2 da tills");
+            goToTills();
+        }
+        else
+        {
+            print("trying again");
+            repeatUntilAwesome();
+        }
+    }
+    
+
+
     public void goToTills()
     {
         if (arbManage.kassaBusy == false)
@@ -35,28 +51,27 @@ public class ArbetareScript : ArbetareBase
             arbManage.kassaBusy = true; 
             movingTill = true;
         }
-        else
-        {
-            Invoke("goToTills", 2f);
-        }
     }
 
     public void cook()
     {
         if(arbManage.availableStations == null)
         {
+            print("no stations, no cook");
             Invoke("cook", 2f);
         }
         else
         {
+            print("start the cook");
             arbManage.usedStations.Add(arbManage.availableStations[0]);
             arbManage.availableStations.RemoveAt(0);
-            movingTill = true;
+            movingCook = true;
         }
     }
 
     private void giveDrink()
     {
+        print("give drinky");
         movingDropOff = true;
     }
 
@@ -106,14 +121,14 @@ public class ArbetareScript : ArbetareBase
 
         if (movingTill == true)
         {
-            
             print("går till kunden");
             transform.position = Vector3.MoveTowards(transform.position, arbManage.kassaPos.transform.position, 1000);
             print("gick till kunden");
+            movingTill = false;
+
             serviceTime = 2f;
             for (int i = 0; i < workerService; i++)
             {
-
                 serviceTime -= 0.3f;
             }
             if (tiredHappened == true)
@@ -121,12 +136,13 @@ public class ArbetareScript : ArbetareBase
                 serviceTime *= 2;
             }
             Invoke("cook", serviceTime);
-            movingTill = false;
+
         }
 
         if(movingCook == true)
         {
             transform.position = Vector3.MoveTowards(transform.position, arbManage.usedStations.Last().transform.position, 100);
+            print("moved to cook");
             movingCook = false;
             arbManage.kassaBusy = false;
             cookTime = 2f;
@@ -143,6 +159,7 @@ public class ArbetareScript : ArbetareBase
 
         if(movingDropOff == true)
         {
+            print("finished everything");
             transform.position = Vector3.MoveTowards(transform.position, arbManage.dropOffPos.transform.position, 100);
             arbManage.availableStations.Add(arbManage.usedStations[0]);
             arbManage.usedStations.RemoveAt(0);
