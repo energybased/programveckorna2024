@@ -13,7 +13,7 @@ namespace WorldTime {
 
     public class WorldLight : MonoBehaviour
     {
-        public float duration = 30f;
+        public float duration = 960f;
 
         [SerializeField] private Gradient gradient;
         private Light2D _light;
