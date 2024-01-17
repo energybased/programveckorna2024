@@ -8,7 +8,9 @@ public class ClockUI : MonoBehaviour
 {
 
     private const float REAL_SECONDS_PER_INGAME_DAY = 960f;
-    private const float daytime_length = 720f;
+    private const float afternoon_length = 360f;
+    private const float morning_length = 360f;
+    private const float daytime_length = afternoon_length + morning_length;
     private const float nighttime_length = 240f;
     public bool isday = true;
 
