@@ -47,6 +47,7 @@ public class ArbetareScript : ArbetareBase
     {
         if (arbManage.kassaBusy == false)
         {
+            arbManage.kund.ordered = true;
             print("fick kund");
             arbManage.kassaBusy = true; 
             movingTill = true;

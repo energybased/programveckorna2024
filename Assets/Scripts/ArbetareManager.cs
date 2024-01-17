@@ -40,12 +40,12 @@ public class ArbetareManager : ArbetareBase
             kund = collision.GetComponent<maxTempKundSkript>();
             if(kund.ordered == false)
             {
-                kund.ordered = true;
+                
                 print("kund har kommit");
                 
                 busyWorking.Add(arbetareList[0]);
                 if (kassaBusy == false)
-                {
+                { 
                     busyWorking.Last().GetComponent<ArbetareScript>().goToTills();
                 }
                 else
@@ -95,6 +95,7 @@ public class ArbetareManager : ArbetareBase
     }
     public void restoreGuyLists()
     {
+        arbetareList.Last().GetComponent<ArbetareScript>().breakTimer = 0;
         totalGuys += 1;
         var temp = arbetareList.Last();
         temp.transform.position = Vector3.MoveTowards(temp.transform.position, startPos.transform.position, 1000);
