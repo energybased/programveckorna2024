@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     Animator animator;
     Camera cam;
     bool spotlightPlayer;
+    bool isConstructing;
     GameObject player;
     public bool playerCanMove;
     [SerializeField]
@@ -56,35 +57,60 @@ public class UIManager : MonoBehaviour
     }
     void Update()
     {
-        if(spotlightPlayer)
+        if(spotlightPlayer && !isConstructing)
         {
-            cam.transform.position = Vector3.Lerp(cam.transform.position, player.gameObject.transform.position - new Vector3(3.125f, 0, 100), Time.deltaTime  * 8);
-            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 3.5f, Time.deltaTime * 2);
+            cam.transform.position = Vector3.Lerp(cam.transform.position, player.gameObject.transform.position - new Vector3(3.125f, -0.5f, 0), Time.deltaTime * 8);
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 3.5f, Time.deltaTime * 8);
             playerCanMove = false;
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
-        else
+        else if(!spotlightPlayer && isConstructing)
         {
-            cam.transform.position = Vector3.Lerp(cam.transform.position, player.gameObject.transform.position, Time.deltaTime * 4);
-            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 7, Time.deltaTime * 3);
+            cam.transform.position = Vector3.Lerp(cam.transform.position, Vector3.zero - new Vector3(0, 1.5f, 0), Time.deltaTime  * 8);
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 9, Time.deltaTime * 8);
+            playerCanMove = true;
+        }
+        else if(!spotlightPlayer && !isConstructing)
+        {
+            cam.transform.position = Vector3.Lerp(cam.transform.position, Vector3.zero, Time.deltaTime * 4);
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 8, Time.deltaTime * 4);
             playerCanMove = true;
         }
 
         if(Input.GetKeyDown(KeyCode.Tab))
         {
-            if(animator.GetBool("isClipboardOpen") == false)
+            if(animator.GetBool("isClipboardOpen") == false && animator.GetBool("isConstructionOpen") == false)
             {
                 spotlightPlayer = true;
                 animator.SetBool("isClipboardOpen", true);
                 animator.SetTrigger("toggleClipboard");
                 
             }
-            else if(animator.GetBool("isClipboardOpen") == true)
+            else if(animator.GetBool("isClipboardOpen") == true && animator.GetBool("isConstructionOpen") == false)
             {
                 spotlightPlayer = false;
                 animator.SetBool("isClipboardOpen", false);
                 animator.SetTrigger("toggleClipboard");
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            if(animator.GetBool("isConstructionOpen") == false && animator.GetBool("isClipboardOpen") == false)
+            {
+                isConstructing = true;
+                animator.SetBool("isConstructionOpen", true);
+                animator.SetTrigger("toggleConstruction");
+                
+            }
+            else if(animator.GetBool("isConstructionOpen") == true && animator.GetBool("isClipboardOpen") == false)
+            {
+                isConstructing = false;
+                animator.SetBool("isConstructionOpen", false);
+                animator.SetTrigger("toggleConstruction");
+            }
+        }
+
         if(Input.GetMouseButton(1))
         {
             Cursor.SetCursor(cursorStashTexture, Vector2.zero, CursorMode.ForceSoftware);
