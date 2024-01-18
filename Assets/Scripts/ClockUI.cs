@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor.UI;
 using TMPro;
 
+
 public class ClockUI : MonoBehaviour
 {
     public enum Period { morning, afternoon, night}
@@ -15,7 +16,7 @@ public class ClockUI : MonoBehaviour
     private const float nighttime_length = 240f;
     public bool isday = true;
     public bool israining = false;
-
+    private float chanceofrain = 0f;
 
     private Transform clockHandTransform;
     private TextMeshProUGUI dayText;
@@ -32,8 +33,8 @@ public class ClockUI : MonoBehaviour
     public void test()
     {
         print("maybe rain?");
-
     }
+
 
     private void Update()
     {
