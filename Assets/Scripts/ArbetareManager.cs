@@ -8,7 +8,7 @@ public class ArbetareManager : ArbetareBase
 {
     public List<GameObject> arbetareList = new List<GameObject>();
     public List<GameObject> v‰ntarPÂAnst‰llning = new List<GameObject>();
-    public List<GameObject> tiredWorker = new List<GameObject>();
+    List<GameObject> tiredWorker = new List<GameObject>();
     public List<GameObject> busyWorking = new List<GameObject>();
 
     public List<GameObject> availableStations = new List<GameObject>();
@@ -22,12 +22,11 @@ public class ArbetareManager : ArbetareBase
     public GameObject kassaPos;
     public GameObject dropOffPos;
 
-    public float totalSpeed;
-    public float totalQuality;
-    public float totalService;
-    public int totalTired;
-    public int totalGuys;
-
+    float totalSpeed;
+    float totalQuality;
+    float totalService;
+    int totalTired;
+    int totalGuys;
 
     public bool kassaBusy = false;
 
