@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class rain : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool israining = false;
+    private int chanceofrain;
+    public ParticleSystem rainParticleSystem;
 
-    // Update is called once per frame
-    void Update()
+    public void test()
     {
-        
+        print("maybe rain?");
+        chanceofrain = Random.Range(0, 100);
+        if (chanceofrain <= 1)
+        {
+            israining = true;
+            //chanceofrain <= 20;
+            if (israining == true)
+            {
+                var em = rainParticleSystem.emission;
+                em.enabled = true;
+                rainParticleSystem.Play();
+
+            }
+        }
+        else
+        {
+            israining = false;
+        }
+
+
     }
 }
