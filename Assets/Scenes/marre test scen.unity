@@ -200,7 +200,7 @@ Animator:
   m_GameObject: {fileID: 490247525}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5ae9109fbe9427049a6b9bfe9999aeda, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -840,12 +840,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2193251518248718117, guid: 920161b8afeffc549a16e69a62d324ef, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193251518248718117, guid: 920161b8afeffc549a16e69a62d324ef, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193251518248718117, guid: 920161b8afeffc549a16e69a62d324ef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6017051
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2193251518248718117, guid: 920161b8afeffc549a16e69a62d324ef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8632908
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2193251518248718117, guid: 920161b8afeffc549a16e69a62d324ef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -877,6 +885,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2193251518248718117, guid: 920161b8afeffc549a16e69a62d324ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330410344707273204, guid: 920161b8afeffc549a16e69a62d324ef, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1552434561, guid: 58ca2f6e941bc854e810c2a99a9ae61f, type: 3}
+    - target: {fileID: 5330410344707273204, guid: 920161b8afeffc549a16e69a62d324ef, type: 3}
+      propertyPath: m_DrawMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5563809641889272936, guid: 920161b8afeffc549a16e69a62d324ef, type: 3}
@@ -1402,7 +1418,6 @@ MonoBehaviour:
   restingTime: 0
   arbetareList: []
   "v\xE4ntarP\xE5Anst\xE4llning": []
-  tiredWorker: []
   busyWorking: []
   availableStations:
   - {fileID: 1688324293}
@@ -1415,11 +1430,6 @@ MonoBehaviour:
   startPos: {fileID: 1629747442}
   kassaPos: {fileID: 315528810}
   dropOffPos: {fileID: 268991426}
-  totalSpeed: 0
-  totalQuality: 0
-  totalService: 0
-  totalTired: 0
-  totalGuys: 0
   kassaBusy: 0
   kund: {fileID: 0}
 --- !u!114 &1991094522

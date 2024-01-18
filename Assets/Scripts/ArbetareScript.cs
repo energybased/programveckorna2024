@@ -123,7 +123,7 @@ public class ArbetareScript : ArbetareBase
         if (movingTill == true)
         {
             print("går till kunden");
-            transform.position = Vector3.MoveTowards(transform.position, arbManage.kassaPos.transform.position, 1000);
+            transform.position = Vector3.MoveTowards(transform.position, arbManage.kassaPos.transform.position, 10);
             print("gick till kunden");
             movingTill = false;
 
@@ -142,7 +142,7 @@ public class ArbetareScript : ArbetareBase
 
         if(movingCook == true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, arbManage.usedStations.Last().transform.position, 100);
+            transform.position = Vector3.MoveTowards(transform.position, arbManage.usedStations.Last().transform.position, 10);
             print("moved to cook");
             movingCook = false;
             arbManage.kassaBusy = false;
@@ -161,7 +161,7 @@ public class ArbetareScript : ArbetareBase
         if(movingDropOff == true)
         {
             print("finished everything");
-            transform.position = Vector3.MoveTowards(transform.position, arbManage.dropOffPos.transform.position, 100);
+            transform.position = Vector3.MoveTowards(transform.position, arbManage.dropOffPos.transform.position, 10);
             arbManage.availableStations.Add(arbManage.usedStations[0]);
             arbManage.usedStations.RemoveAt(0);
             movingDropOff = false;
