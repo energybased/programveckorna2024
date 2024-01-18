@@ -22,13 +22,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Texture2D cursorStashTexture;
     [SerializeField]
-    TMP_Text debugText1;
+    TMP_Text totalMoney;
     [SerializeField]
-    TMP_Text debugText2;
+    TMP_Text totalComfort;
     [SerializeField]
-    TMP_Text debugText3;
+    TMP_Text totalDesign;
     [SerializeField]
-    TMP_Text debugText4;
+    TMP_Text totalAtmosphere;
+    [SerializeField]
+    GameObject furnitureAvailable;
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -111,7 +113,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        if(Input.GetMouseButton(1))
+        if(Input.GetMouseButton(1) && isConstructing)
         {
             Cursor.SetCursor(cursorStashTexture, Vector2.zero, CursorMode.ForceSoftware);
             var objectCheck = Physics2D.OverlapBox(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.one * 0.01f, 0, LayerMask.GetMask("Furniture"));
@@ -135,9 +137,17 @@ public class UIManager : MonoBehaviour
             Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
         }
 
-        debugText1.text = "Money: " + gameManager.money;
-        debugText2.text = "Total Comfort: " + gameManager.totalComfort;
-        debugText3.text = "Total Design: " + gameManager.totalDesign;
-        debugText4.text = "Total Atmosphere: " + gameManager.totalAtmosphere;
+        if(gameManager.furnitureInventoryList.Count > 0)
+        {
+            furnitureAvailable.SetActive(false);
+        }
+        else
+        {
+            furnitureAvailable.SetActive(true);
+        }
+        totalMoney.text = "Money: " + gameManager.money;
+        totalComfort.text = "Total Comfort: " + gameManager.totalComfort;
+        totalDesign.text = "Total Design: " + gameManager.totalDesign;
+        totalAtmosphere.text = "Total Atmosphere: " + gameManager.totalAtmosphere;
     }
 }
