@@ -7,7 +7,7 @@ using TMPro;
 
 public class ClockUI : MonoBehaviour
 {
-    public enum Period { morning, afternoon, night}
+    public enum Period { Morning, Afternoon, Night}
     public Period currentPeriod;
     private const float REAL_SECONDS_PER_INGAME_DAY = 960f;
     private const float afternoon_length = 360f;
@@ -20,6 +20,7 @@ public class ClockUI : MonoBehaviour
 
     private Transform clockHandTransform;
     private TextMeshProUGUI dayText;
+    private TextMeshProUGUI timeOfDayText;
     public float day;
     int numDays = 1;
 
@@ -27,6 +28,7 @@ public class ClockUI : MonoBehaviour
     {
         clockHandTransform = transform.Find("clockHand");
         dayText = transform.Find("dayText").GetComponent<TextMeshProUGUI>();
+        timeOfDayText = transform.Find("timeOfDayText").GetComponent<TextMeshProUGUI>();
         dayText.text = "Day " + numDays;
     }
 
@@ -38,24 +40,25 @@ public class ClockUI : MonoBehaviour
 
     private void Update()
     {
+        timeOfDayText.text = currentPeriod.ToString();
         if (isday == true)
         {
             day += Time.deltaTime / daytime_length;
-            if (day < 0.5f && currentPeriod != Period.morning)
+            if (day < 0.5f && currentPeriod != Period.Morning)
             {
-                currentPeriod = Period.morning;
+                currentPeriod = Period.Morning;
                 test();
-            } else if (day > 0.5f && currentPeriod != Period.afternoon)
+            } else if (day > 0.5f && currentPeriod != Period.Afternoon)
             {
-                currentPeriod = Period.afternoon;
+                currentPeriod = Period.Afternoon;
                 test();
             }
         }
         else
         {
-            if (currentPeriod != Period.night)
+            if (currentPeriod != Period.Night)
             {
-                currentPeriod = Period.night;
+                currentPeriod = Period.Night;
                 test();
             }
             day += Time.deltaTime / nighttime_length;
