@@ -103,7 +103,6 @@ public class Kund : MonoBehaviour
 
         if(Collision.gameObject.tag == "Kund")
         {
-            StandInLine();
             förstIKön = false;
         }
         
@@ -131,13 +130,6 @@ public class Kund : MonoBehaviour
     {
         Debug.Log("Går till ett ledigt bord");
     }
-
-    void StandInLine()
-    {
-        
-    }
-
-    
     IEnumerator PåvägUt()
     {
         yield return new WaitForSeconds(6);
