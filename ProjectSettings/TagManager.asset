@@ -4,25 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Undefined
   - worker
-  - boss
-<<<<<<< Updated upstream
-  - kund
-  - Arbetare
-=======
   - Arbetare
   - "utg\xE5ng"
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Test Layer
+  - Furniture
   - Water
   - UI
-  - Furniture
-  - Player
+  - 
+  - 
   - 
   - 
   - 
@@ -50,7 +43,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Effects
-    uniqueID: 511427427
     locked: 0
