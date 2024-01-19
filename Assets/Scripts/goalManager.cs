@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class goalManager : MonoBehaviour
 {
-    public goalBaseClass[] goals;
+    
+    public goalBaseClass[] currentGoals;
+    public goalBaseClass[] tier1Goals;
+    public goalBaseClass[] tier2Goals;
+    public goalBaseClass[] tier3Goals;
 
-    public bool CheckGoals(){
-        for(int i = 0; i < goals.Length; i++){
-            if(goals[i].isCompleted == false)
+
+    public bool checkCurrentGoals(){
+        for(int i = 0; i < currentGoals.Length; i++){
+            if(currentGoals[i].isCompleted == false)
             {
                 return false;
             }
@@ -18,8 +23,9 @@ public class goalManager : MonoBehaviour
 
     void Update()
     {
-        if(CheckGoals()){
-            print("level Complete!");
+        if(checkCurrentGoals())
+        {
+            
         }
     }
 }
