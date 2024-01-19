@@ -202,7 +202,7 @@ MonoBehaviour:
         m_MethodName: SelectObject
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8393911571800858669, guid: 019849d99edca45409a82f50f082b39d, type: 3}
+          m_ObjectArgument: {fileID: 4560301981751289694, guid: e7a86613668989447b5228c98b833241, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
