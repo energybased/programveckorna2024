@@ -1,31 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class goalManager : MonoBehaviour
 {
-    public int amountOfStars = 0;
-    
+    public int amountOfStars;
+    Image goalsStarsSpriteReference;
+    [SerializeField]
+    Sprite[] starSprites;
     public List<goalBaseClass> currentGoals;
-    [SerializeField]
-    goalBaseClass[] tier1Goals;
-    [SerializeField]
-    goalBaseClass[] tier2Goals;
-    [SerializeField]
-    goalBaseClass[] tier3Goals;
-
     void Start()
     {
-        for (int i = 0; i < tier1Goals.Length; i++)
-        {
-            var componentsToAdd = gameObject.AddComponent<goalBaseClass>();
-            currentGoals.Add(componentsToAdd); 
-        }
+        goalsStarsSpriteReference = FindObjectOfType<uiGoalsOpacity>().transform.GetChild(0).GetComponent<Image>();
+        for (int i = 0; i < 3; i++)
+            {
+                var componentsToAdd = gameObject.AddComponent(typeof(goalsTier1)) as goalBaseClass;
+                componentsToAdd.currentGoalType += i;
+                currentGoals.Add(componentsToAdd); 
+            }
     }
     public bool checkCurrentGoals()
     {
-        print("working");
-        for(int i = 0; i < currentGoals.Count; i++){
+        for(int i = 0; i < currentGoals.Count; i++)
+        {
             if(currentGoals[i].isCompleted == false)
             {
                 return false;
@@ -36,25 +34,41 @@ public class goalManager : MonoBehaviour
 
     void Update()
     {
+        goalsStarsSpriteReference.sprite = starSprites[amountOfStars];
         if(checkCurrentGoals())
         {
             amountOfStars++;
-            switch(amountOfStars)
+            if(amountOfStars == 1)
             {
-                case 1:
-                    var componentsToRemove = gameObject.GetComponents<goalBaseClass>();
-                    for(int i = 0; i < componentsToRemove.Length; i++)
-                    {
-                        Destroy(componentsToRemove[i]);
-                    }
-                    currentGoals.Clear();
-                    for (int i = 0; i < tier2Goals.Length; i++)
-                    {
-                        var componentsToAdd = gameObject.AddComponent<goalBaseClass>();
-                        currentGoals.Add(componentsToAdd); 
-                    }
-                    print("done?");
-                    break;
+                var componentsToRemove = gameObject.GetComponents<goalsTier1>();
+                for(int i = 0; i < componentsToRemove.Length; i++)
+                {
+                    Destroy(componentsToRemove[i]);
+                }
+                currentGoals.Clear();
+                for (int i = 0; i < 3; i++)
+                {
+                    var componentsToAdd = gameObject.AddComponent(typeof(goalsTier2)) as goalsTier2;
+                    componentsToAdd.currentGoalType += i;
+                    currentGoals.Add(componentsToAdd); 
+                }
+                print("done?");
+            }
+            else if(amountOfStars == 2)
+            {
+                var componentsToRemove = gameObject.GetComponents<goalsTier2>();
+                for(int i = 0; i < componentsToRemove.Length; i++)
+                {
+                    Destroy(componentsToRemove[i]);
+                }
+                currentGoals.Clear();
+                for (int i = 0; i < 3; i++)
+                {
+                    var componentsToAdd = gameObject.AddComponent(typeof(goalsTier3)) as goalsTier3;
+                    componentsToAdd.currentGoalType += i;
+                    currentGoals.Add(componentsToAdd); 
+                }
+                print("done?");
             }
         }
     }
