@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5694236351662282196}
   - component: {fileID: 3972458573895015411}
   - component: {fileID: 956210638360240439}
-  - component: {fileID: 7918116466599896966}
   - component: {fileID: 2788796008604314528}
   - component: {fileID: 5232545195833607459}
+  - component: {fileID: 7752801026113374985}
   m_Layer: 0
   m_Name: Kund
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.31, y: -24.87, z: 1}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -161,24 +161,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7918116466599896966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3565958248007075384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b143c100d38716343a13170d92752859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Till: {fileID: 3614629601897229349, guid: d665a99fae36b7841b2c40954e361818, type: 3}
-  pickUp: {fileID: 5574915840338645840, guid: 2d3ba5d62a358594f9c8a206ecd49899, type: 3}
-  emptyTable: {fileID: 6119518202140021587, guid: 490690acf0a5720478c2a525f0f79879, type: 3}
-  speed: 200
-  nextWayPointDistance: 1
-  currentWaypoint: 0
 --- !u!114 &2788796008604314528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,3 +210,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7752801026113374985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3565958248007075384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc54d203825a7eb43aeaf1a6322daafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Till: {fileID: 4323087549265243960, guid: c593e51daee99294e86a68fa873efa95, type: 3}
+  pickUp: {fileID: 7757443322178473731, guid: 44f72d0c7cbabd440a3178245d794976, type: 3}
+  emptyTable: {fileID: 492044762610380191, guid: a87c715cceb18094c881dbc7d6247914, type: 3}
+  speed: 200
+  nextWayPointDistance: 1
+  currentWaypoint: 0
