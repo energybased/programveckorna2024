@@ -13,7 +13,7 @@ namespace WorldTime {
 
     public class WorldLight : MonoBehaviour
     {
-        public float duration = 960f;
+        public float duration = 600f;
 
         [SerializeField] private Gradient gradient;
         private Light2D _light;
@@ -30,7 +30,7 @@ namespace WorldTime {
         private void Update()
         {
             var timeElapsed = Time.time - _startTime;
-            var percentage = Mathf.Sin(f: timeElapsed / duration); // * Mathf.PI * 2) * 0.5f;
+            var percentage = Mathf.Sin(f: timeElapsed / duration);
             percentage = Mathf.Clamp01(percentage);
             print(percentage);
 
