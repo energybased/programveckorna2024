@@ -18,6 +18,12 @@ public class ArbetareScript : ArbetareBase
     bool movingCook = false;
     bool movingDropOff = false;
 
+    Animator anim;
+    Rigidbody2D rb2d;
+
+    float step;
+    public float speed = 2;
+
     private void OnTriggerStay2D(Collider2D collider)
     {
         if (Input.GetKeyDown(KeyCode.F) && collider.gameObject.tag == "Player" && tiredHappened == true)
@@ -47,6 +53,7 @@ public class ArbetareScript : ArbetareBase
     {
         if (arbManage.kassaBusy == false)
         {
+            anim.SetBool("ståNer", true);
             arbManage.kund.ordered = true;
             print("fick kund");
             arbManage.kassaBusy = true; 
@@ -104,6 +111,8 @@ public class ArbetareScript : ArbetareBase
         
         arbManage = FindObjectOfType<ArbetareManager>();
         cv = GetComponentInChildren<CV>();
+        rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
         Invoke("stats", 1f);
     }
@@ -112,6 +121,7 @@ public class ArbetareScript : ArbetareBase
     void Update()
     {
         breakTimer += 1 * Time.deltaTime; //timer som räknar upp till rast
+        step = Time.deltaTime * speed;
 
         if (breakTimer >= 2 && breakTimer >= timeUntilBreak && tiredHappened == false)
         {
@@ -122,52 +132,77 @@ public class ArbetareScript : ArbetareBase
 
         if (movingTill == true)
         {
-            print("går till kunden");
-            transform.position = Vector3.MoveTowards(transform.position, arbManage.kassaPos.transform.position, 10);
+            anim.SetBool("ståNer", false);
+            anim.SetBool("går", true);
+            transform.position = Vector3.MoveTowards(transform.position, arbManage.kassaPos.transform.position, step);
             print("gick till kunden");
-            movingTill = false;
-
-            serviceTime = 2f;
-            for (int i = 0; i < workerService; i++)
+            if(transform.position == arbManage.kassaPos.transform.position)
             {
-                serviceTime -= 0.3f;
-            }
-            if (tiredHappened == true)
-            {
-                serviceTime *= 2;
-            }
-            Invoke("cook", serviceTime);
+                anim.SetBool("ståNer", true);
+                anim.SetBool("går", false);
+               
+                movingTill = false;
 
+                serviceTime = 2f;
+                for (int i = 0; i < workerService; i++)
+                {
+                    serviceTime -= 0.3f;
+                }
+                if (tiredHappened == true)
+                {
+                    serviceTime *= 2;
+                }
+                Invoke("cook", serviceTime);
+            }
         }
 
         if(movingCook == true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, arbManage.usedStations.Last().transform.position, 10);
-            print("moved to cook");
-            movingCook = false;
-            arbManage.kassaBusy = false;
-            cookTime = 2f;
-            for (int i = 0; i < workerSpeed; i++)
+            anim.SetBool("går", true);
+            GetComponent<SpriteRenderer>().flipX = true;
+            anim.SetBool("ståNer", false);
+            transform.position = Vector3.MoveTowards(transform.position, arbManage.usedStations.Last().transform.position, step);
+            if (transform.position == arbManage.usedStations.Last().transform.position)
             {
-                cookTime -= 0.3f;
+                anim.SetBool("arbeting", true);
+                anim.SetBool("går", false);
+                GetComponent<SpriteRenderer>().flipX = false;
+                print("moved to cook");
+                movingCook = false;
+                arbManage.kassaBusy = false;
+                cookTime = 2f;
+                for (int i = 0; i < workerSpeed; i++)
+                {
+                    cookTime -= 0.3f;
+                }
+                if (tiredHappened == true)
+                {
+                    cookTime *= 2;
+                }
+                anim.SetBool("arbeting", false);
+                Invoke("giveDrink", cookTime);
             }
-            if (tiredHappened == true)
-            {
-                cookTime *= 2;
-            }
-            Invoke("giveDrink", cookTime);
         }
 
         if(movingDropOff == true)
         {
             print("finished everything");
-            transform.position = Vector3.MoveTowards(transform.position, arbManage.dropOffPos.transform.position, 10);
-            arbManage.availableStations.Add(arbManage.usedStations[0]);
-            arbManage.usedStations.RemoveAt(0);
-            movingDropOff = false;
-            arbManage.arbetareList.Add(gameObject);
-            arbManage.busyWorking.Remove(gameObject);
-            arbManage.kund.ordered = false;
+            anim.SetBool("arbeting", false);
+            anim.SetBool("går", true);
+            GetComponent<SpriteRenderer>().flipX = true;
+            transform.position = Vector3.MoveTowards(transform.position, arbManage.dropOffPos.transform.position,step);
+            if(transform.position == arbManage.dropOffPos.transform.position)
+            {
+                anim.SetBool("ståNer", true);
+                anim.SetBool("går", false);
+                GetComponent<SpriteRenderer>().flipX = false;
+                arbManage.availableStations.Add(arbManage.usedStations[0]);
+                arbManage.usedStations.RemoveAt(0);
+                movingDropOff = false;
+                arbManage.arbetareList.Add(gameObject);
+                arbManage.busyWorking.Remove(gameObject);
+                arbManage.kund.ordered = false;
+            }   
         }
     }
 }
