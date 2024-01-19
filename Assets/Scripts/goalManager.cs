@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class goalManager : MonoBehaviour
 {
+    public int amountOfStars = 0;
     
-    public goalBaseClass[] currentGoals;
-    public goalBaseClass[] tier1Goals;
-    public goalBaseClass[] tier2Goals;
-    public goalBaseClass[] tier3Goals;
+    public List<goalBaseClass> currentGoals;
+    [SerializeField]
+    goalBaseClass[] tier1Goals;
+    [SerializeField]
+    goalBaseClass[] tier2Goals;
+    [SerializeField]
+    goalBaseClass[] tier3Goals;
 
-
-    public bool checkCurrentGoals(){
-        for(int i = 0; i < currentGoals.Length; i++){
+    void Start()
+    {
+        for (int i = 0; i < tier1Goals.Length; i++)
+        {
+            var componentsToAdd = gameObject.AddComponent<goalBaseClass>();
+            currentGoals.Add(componentsToAdd); 
+        }
+    }
+    public bool checkCurrentGoals()
+    {
+        print("working");
+        for(int i = 0; i < currentGoals.Count; i++){
             if(currentGoals[i].isCompleted == false)
             {
                 return false;
@@ -25,7 +38,24 @@ public class goalManager : MonoBehaviour
     {
         if(checkCurrentGoals())
         {
-            
+            amountOfStars++;
+            switch(amountOfStars)
+            {
+                case 1:
+                    var componentsToRemove = gameObject.GetComponents<goalBaseClass>();
+                    for(int i = 0; i < componentsToRemove.Length; i++)
+                    {
+                        Destroy(componentsToRemove[i]);
+                    }
+                    currentGoals.Clear();
+                    for (int i = 0; i < tier2Goals.Length; i++)
+                    {
+                        var componentsToAdd = gameObject.AddComponent<goalBaseClass>();
+                        currentGoals.Add(componentsToAdd); 
+                    }
+                    print("done?");
+                    break;
+            }
         }
     }
 }

@@ -7,39 +7,15 @@ public class KundSpawner : MonoBehaviour
     
     public GameObject kundPrefab;
     [SerializeField]
-<<<<<<< Updated upstream
-=======
 
     float counter = 0;
     int counterSpeed;
 
     [SerializeField]
->>>>>>> Stashed changes
     int NumberOfKunder = 0;
 
     void Start()
     {
-<<<<<<< Updated upstream
-        
-    }
-
-    
-    void Update()
-    {
-       
-        if(NumberOfKunder == 0)
-        {
-            SpawnKund();
-        }
-        
-    }
-
-    void SpawnKund()
-    {
-        Instantiate(kundPrefab, new Vector3(-0.5f, -8, 1), Quaternion.identity);
-        NumberOfKunder += 1;
-    }
-=======
         counterSpeed = 1;
     }
    // Update is called once per frame
@@ -76,5 +52,4 @@ public class KundSpawner : MonoBehaviour
     }
 
     
->>>>>>> Stashed changes
 }
