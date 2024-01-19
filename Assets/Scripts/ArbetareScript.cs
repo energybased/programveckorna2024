@@ -54,7 +54,7 @@ public class ArbetareScript : ArbetareBase
     {
         if (arbManage.kassaBusy == false)
         {
-            anim.SetBool("st�Ner", true);
+            anim.SetBool("ståNer", true);
             arbManage.kund.ordered = true;
             print("fick kund");
             arbManage.kassaBusy = true; 
@@ -138,14 +138,14 @@ public class ArbetareScript : ArbetareBase
 
         if (movingTill == true)
         {
-            anim.SetBool("st�Ner", false);
-            anim.SetBool("g�r", true);
+            anim.SetBool("ståNer", false);
+            anim.SetBool("går", true);
             transform.position = Vector3.MoveTowards(transform.position, arbManage.kassaPos.transform.position, step);
             print("gick till kunden");
             if(transform.position == arbManage.kassaPos.transform.position)
             {
-                anim.SetBool("st�Ner", true);
-                anim.SetBool("g�r", false);
+                anim.SetBool("ståNer", true);
+                anim.SetBool("går", false);
                
                 movingTill = false;
 
@@ -164,14 +164,14 @@ public class ArbetareScript : ArbetareBase
 
         if(movingCook == true)
         {
-            anim.SetBool("g�r", true);
+            anim.SetBool("går", true);
             GetComponent<SpriteRenderer>().flipX = true;
-            anim.SetBool("st�Ner", false);
+            anim.SetBool("ståNer", false);
             transform.position = Vector3.MoveTowards(transform.position, arbManage.usedStations.Last().transform.position, step);
             if (transform.position == arbManage.usedStations.Last().transform.position)
             {
                 anim.SetBool("arbeting", true);
-                anim.SetBool("g�r", false);
+                anim.SetBool("går", false);
                 GetComponent<SpriteRenderer>().flipX = false;
                 print("moved to cook");
                 movingCook = false;
@@ -194,13 +194,13 @@ public class ArbetareScript : ArbetareBase
         {
             print("finished everything");
             anim.SetBool("arbeting", false);
-            anim.SetBool("g�r", true);
+            anim.SetBool("går", true);
             GetComponent<SpriteRenderer>().flipX = true;
             transform.position = Vector3.MoveTowards(transform.position, arbManage.dropOffPos.transform.position,step);
             if(transform.position == arbManage.dropOffPos.transform.position)
             {
-                anim.SetBool("st�Ner", true);
-                anim.SetBool("g�r", false);
+                anim.SetBool("ståNer", true);
+                anim.SetBool("går", false);
                 GetComponent<SpriteRenderer>().flipX = false;
                 arbManage.availableStations.Add(arbManage.usedStations[0]);
                 arbManage.usedStations.RemoveAt(0);

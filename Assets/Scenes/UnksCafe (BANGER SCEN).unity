@@ -473,10 +473,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfStars: 0
+  starSprites:
+  - {fileID: 411552928, guid: 83147715df2dfa04191186ada764db7d, type: 3}
+  - {fileID: -754237844, guid: 83147715df2dfa04191186ada764db7d, type: 3}
+  - {fileID: -2102593848, guid: 83147715df2dfa04191186ada764db7d, type: 3}
+  - {fileID: -1626373370, guid: 83147715df2dfa04191186ada764db7d, type: 3}
   currentGoals: []
-  tier1Goals: []
-  tier2Goals: []
-  tier3Goals: []
 --- !u!114 &271765510
 MonoBehaviour:
   m_ObjectHideFlags: 0
