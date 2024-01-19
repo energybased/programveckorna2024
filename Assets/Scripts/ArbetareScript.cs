@@ -114,7 +114,7 @@ public class ArbetareScript : ArbetareBase
     void Start()
     {
         tiredHappened = false;
-        
+        gameManager = FindObjectOfType<GameManager>();
         arbManage = FindObjectOfType<ArbetareManager>();
         cv = GetComponentInChildren<CV>();
         rb2d = GetComponent<Rigidbody2D>();
