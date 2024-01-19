@@ -30,7 +30,7 @@ namespace WorldTime {
         private void Update()
         {
             var timeElapsed = Time.time - _startTime;
-            var percentage = Mathf.Sin(f: timeElapsed / duration * Mathf.PI * 2) * 0.5f;
+            var percentage = Mathf.Sin(f: timeElapsed / duration); // * Mathf.PI * 2) * 0.5f;
             percentage = Mathf.Clamp01(percentage);
             print(percentage);
 

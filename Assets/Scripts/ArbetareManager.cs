@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using TMPro;
 
 public class ArbetareManager : ArbetareBase
 {
@@ -14,9 +15,9 @@ public class ArbetareManager : ArbetareBase
     public List<GameObject> availableStations = new List<GameObject>();
     public List<GameObject> usedStations = new List<GameObject>();
 
-    public Canvas guys;
-    public GameObject worker;
-    public GameObject CV;
+    [SerializeField] Canvas guys;
+    [SerializeField] GameObject worker;
+    [SerializeField] GameObject CV;
 
     public GameObject startPos;
     public GameObject kassaPos;
@@ -31,6 +32,10 @@ public class ArbetareManager : ArbetareBase
     public bool kassaBusy = false;
 
     public maxTempKundSkript kund;
+
+    [SerializeField] TextMeshProUGUI statText1;
+    [SerializeField] TextMeshProUGUI statText2;
+    [SerializeField] TextMeshProUGUI statText3;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -69,6 +74,17 @@ public class ArbetareManager : ArbetareBase
             v‰ntarPÂAnst‰llning.Add(newestWorker);
             workerSpawn.x += 5;
         }
+        Invoke("cvShowStats",0.2f);
+    }
+
+    void cvShowStats()
+    {
+        CV CVtemp = v‰ntarPÂAnst‰llning[0].GetComponentInChildren<CV>();
+        statText1.text = "Quality: " + CVtemp.workerQuality + " Speed: " + CVtemp.workerSpeed + " Service: " + CVtemp.workerService + " Energy: " + CVtemp.restingTime;
+        CVtemp = v‰ntarPÂAnst‰llning[1].GetComponentInChildren<CV>();
+        statText2.text = "Quality: " + CVtemp.workerQuality + " Speed: " + CVtemp.workerSpeed + " Service: " + CVtemp.workerService + " Energy: " + CVtemp.restingTime;
+        CVtemp = v‰ntarPÂAnst‰llning[2].GetComponentInChildren<CV>();
+        statText3.text = "Quality: " + CVtemp.workerQuality + " Speed: " + CVtemp.workerSpeed + " Service: " + CVtemp.workerService + " Energy: " + CVtemp.restingTime;
     }
 
     //choose a guy (or woman)
