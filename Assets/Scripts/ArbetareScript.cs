@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ArbetareScript : ArbetareBase
 {
-    public float breakTimer = 0; //timer som räknar upp till rast
-    public int timeUntilBreak; //hur långt brodern arbetar innan trötthet
-    public bool tiredHappened = false; //kollar om bror har blivit trött
+    public float breakTimer = 0; //timer som rï¿½knar upp till rast
+    public int timeUntilBreak; //hur lï¿½ngt brodern arbetar innan trï¿½tthet
+    public bool tiredHappened = false; //kollar om bror har blivit trï¿½tt
 
+    GameManager gameManager;
     ArbetareManager arbManage;
     CV cv;
 
@@ -53,7 +54,7 @@ public class ArbetareScript : ArbetareBase
     {
         if (arbManage.kassaBusy == false)
         {
-            anim.SetBool("ståNer", true);
+            anim.SetBool("stï¿½Ner", true);
             arbManage.kund.ordered = true;
             print("fick kund");
             arbManage.kassaBusy = true; 
@@ -83,7 +84,7 @@ public class ArbetareScript : ArbetareBase
         movingDropOff = true;
     }
 
-    public void onBreak() //coroutine medans man är på rast
+    public void onBreak() //coroutine medans man ï¿½r pï¿½ rast
     {
         breakTimer = 0;
         tiredHappened = false;
@@ -125,7 +126,7 @@ public class ArbetareScript : ArbetareBase
     //Update
     void Update()
     {
-        breakTimer += 1 * Time.deltaTime; //timer som räknar upp till rast
+        breakTimer += 1 * Time.deltaTime; //timer som rï¿½knar upp till rast
         step = Time.deltaTime * speed;
 
         if (breakTimer >= 2 && breakTimer >= timeUntilBreak && tiredHappened == false)
@@ -137,14 +138,14 @@ public class ArbetareScript : ArbetareBase
 
         if (movingTill == true)
         {
-            anim.SetBool("ståNer", false);
-            anim.SetBool("går", true);
+            anim.SetBool("stï¿½Ner", false);
+            anim.SetBool("gï¿½r", true);
             transform.position = Vector3.MoveTowards(transform.position, arbManage.kassaPos.transform.position, step);
             print("gick till kunden");
             if(transform.position == arbManage.kassaPos.transform.position)
             {
-                anim.SetBool("ståNer", true);
-                anim.SetBool("går", false);
+                anim.SetBool("stï¿½Ner", true);
+                anim.SetBool("gï¿½r", false);
                
                 movingTill = false;
 
@@ -163,14 +164,14 @@ public class ArbetareScript : ArbetareBase
 
         if(movingCook == true)
         {
-            anim.SetBool("går", true);
+            anim.SetBool("gï¿½r", true);
             GetComponent<SpriteRenderer>().flipX = true;
-            anim.SetBool("ståNer", false);
+            anim.SetBool("stï¿½Ner", false);
             transform.position = Vector3.MoveTowards(transform.position, arbManage.usedStations.Last().transform.position, step);
             if (transform.position == arbManage.usedStations.Last().transform.position)
             {
                 anim.SetBool("arbeting", true);
-                anim.SetBool("går", false);
+                anim.SetBool("gï¿½r", false);
                 GetComponent<SpriteRenderer>().flipX = false;
                 print("moved to cook");
                 movingCook = false;
@@ -193,19 +194,20 @@ public class ArbetareScript : ArbetareBase
         {
             print("finished everything");
             anim.SetBool("arbeting", false);
-            anim.SetBool("går", true);
+            anim.SetBool("gï¿½r", true);
             GetComponent<SpriteRenderer>().flipX = true;
             transform.position = Vector3.MoveTowards(transform.position, arbManage.dropOffPos.transform.position,step);
             if(transform.position == arbManage.dropOffPos.transform.position)
             {
-                anim.SetBool("ståNer", true);
-                anim.SetBool("går", false);
+                anim.SetBool("stï¿½Ner", true);
+                anim.SetBool("gï¿½r", false);
                 GetComponent<SpriteRenderer>().flipX = false;
                 arbManage.availableStations.Add(arbManage.usedStations[0]);
                 arbManage.usedStations.RemoveAt(0);
                 movingDropOff = false;
                 arbManage.arbetareList.Add(gameObject);
                 arbManage.busyWorking.Remove(gameObject);
+                gameManager.money = gameManager.money + 20;
                 Invoke("lastThing", 0.5f);
             }   
         }

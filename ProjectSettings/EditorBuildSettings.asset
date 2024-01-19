@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/eriksScen.unity
-    guid: 0ff99bd1b8e24f2459b9ab6451a5cdfa
+    path: Assets/Scenes/UnksCafe (BANGER SCEN).unity
+    guid: a1cf83be7d4694f46a0edfc6a4509166
   m_configObjects: {}

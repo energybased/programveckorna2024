@@ -39,35 +39,35 @@ public class playerMovement : MonoBehaviour
 
         if(rb2d.velocity.x > 0)
         {
-            animator.SetBool("g�H�ger", true);
+            animator.SetBool("gåHöger", true);
             GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
-            animator.SetBool("g�H�ger", false);
+            animator.SetBool("gåHöger", false);
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
         if (rb2d.velocity.x < 0)
         {
-            animator.SetBool("g�V�nster", true);
+            animator.SetBool("gåVänster", true);
         }
         else
-            animator.SetBool("g�V�nster", false);
+            animator.SetBool("gåVänster", false);
 
         if (rb2d.velocity.y > 0)
         {
-            animator.SetBool("g�Upp", true);
+            animator.SetBool("gåUpp", true);
         }
         else
-            animator.SetBool("g�Upp", false);
+            animator.SetBool("gåUpp", false);
 
         if (rb2d.velocity.y < 0)
         {
-            animator.SetBool("g�Ner", true);
+            animator.SetBool("gåNer", true);
         }
         else
-            animator.SetBool("g�Ner", false);
+            animator.SetBool("gåNer", false);
     }
    
 }
