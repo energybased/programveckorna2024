@@ -23,6 +23,8 @@ public class KundAI : MonoBehaviour
     
     bool ReachedEndOfPath = false;
 
+    public bool ordered = false;
+
     Seeker seeker;
     Rigidbody2D rb2d;
     void Start()

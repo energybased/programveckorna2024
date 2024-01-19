@@ -104,6 +104,11 @@ public class ArbetareScript : ArbetareBase
         breakTimer = 0;
     }
 
+    void lastThing()
+    {
+        arbManage.kund.ordered = false;
+    }
+
     //Start
     void Start()
     {
@@ -201,7 +206,7 @@ public class ArbetareScript : ArbetareBase
                 movingDropOff = false;
                 arbManage.arbetareList.Add(gameObject);
                 arbManage.busyWorking.Remove(gameObject);
-                arbManage.kund.ordered = false;
+                Invoke("lastThing", 0.5f);
             }   
         }
     }

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7752801026113374985}
   m_Layer: 0
   m_Name: Kund
-  m_TagString: Untagged
+  m_TagString: kund
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -228,3 +228,4 @@ MonoBehaviour:
   speed: 200
   nextWayPointDistance: 1
   currentWaypoint: 0
+  ordered: 0

@@ -31,7 +31,7 @@ public class ArbetareManager : ArbetareBase
 
     public bool kassaBusy = false;
 
-    public maxTempKundSkript kund;
+    public KundAI kund;
 
     [SerializeField] TextMeshProUGUI statText1;
     [SerializeField] TextMeshProUGUI statText2;
@@ -41,7 +41,7 @@ public class ArbetareManager : ArbetareBase
     {
         if (collision.gameObject.tag == "kund" && kassaBusy == false)
         {
-            kund = collision.GetComponent<maxTempKundSkript>();
+            kund = collision.GetComponent<KundAI>();
             if(kund.ordered == false)
             {
                 
