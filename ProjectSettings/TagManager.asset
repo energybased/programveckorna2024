@@ -7,13 +7,18 @@ TagManager:
   - Undefined
   - worker
   - boss
+<<<<<<< Updated upstream
   - kund
   - Arbetare
+=======
+  - Arbetare
+  - "utg\xE5ng"
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Test Layer
   - Water
   - UI
   - Furniture
