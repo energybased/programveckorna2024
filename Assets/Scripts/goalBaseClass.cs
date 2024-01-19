@@ -8,5 +8,5 @@ public class goalBaseClass : MonoBehaviour
     public int goalTarget;
     public bool isCompleted;
     public enum goalTypes{Economic, Management, Service}
-    public goalTypes currentGoal;
+    public goalTypes currentGoalType;
 }
