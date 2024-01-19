@@ -6539,7 +6539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: duration
-      value: 960
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: gradient.key0.b
