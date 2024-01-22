@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9055397412665935478}
   - component: {fileID: 2749658501324770382}
   - component: {fileID: 101462922964274326}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: debugTableSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

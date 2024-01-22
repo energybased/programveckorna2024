@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5568059831179443506}
   - component: {fileID: 1453106461321503093}
   - component: {fileID: 5730512267561877924}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: debugSpriteRotations_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
