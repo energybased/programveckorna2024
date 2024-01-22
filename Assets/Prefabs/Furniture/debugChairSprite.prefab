@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 505586793929907649}
   - component: {fileID: 8338978535474085429}
   - component: {fileID: 8254148148671743879}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: debugChairSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
