@@ -15,7 +15,7 @@ public class KundAI : MonoBehaviour
     
     public int currentWaypoint;
 
-    bool hasOrdered = false;
+    public bool hasOrdered = false;
     bool hasPickedUp = false;
 
     Path path;
@@ -23,14 +23,17 @@ public class KundAI : MonoBehaviour
     
     bool ReachedEndOfPath = false;
 
-    public bool ordered = false;
-
     Seeker seeker;
     Rigidbody2D rb2d;
+    Animator anim;
+    SpriteRenderer sr;
+
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
 
         if(hasOrdered == false && hasPickedUp == false)
         {
@@ -48,7 +51,8 @@ public class KundAI : MonoBehaviour
         }
     }
 
-   
+    
+
     void FixedUpdate()
     {
         if(path == null)
@@ -115,5 +119,48 @@ public class KundAI : MonoBehaviour
             Debug.Log("Going to Exit");
             Debug.Log("Has picked up order");
             StartCoroutine(DeSpawn());
-        }  
+        }
+
+    private void Update()
+    {
+        if (rb2d.velocity.x > 0)
+        {
+            anim.SetBool("goSide", true);
+            sr.flipX = true;
+        }
+        else
+        {
+            anim.SetBool("goSide", false);
+            sr.flipX = false;
+        }
+
+        if (rb2d.velocity.x < 0)
+        {
+            anim.SetBool("goSide", true);
+        }
+        else
+        {
+            anim.SetBool("goSide", false);
+        }
+
+        if (rb2d.velocity.y > 0)
+        {
+            anim.SetBool("goUp", true);
+        }
+        else
+        {
+            anim.SetBool("goUp", false);
+        }
+
+        if (rb2d.velocity.y < 0)
+        {
+            anim.SetBool("goDown", true);
+        }
+        else
+        {
+            anim.SetBool("goDown", false);
+        }
+    }
 }
+
+

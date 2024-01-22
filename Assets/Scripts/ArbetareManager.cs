@@ -41,7 +41,7 @@ public class ArbetareManager : ArbetareBase
         if (collision.gameObject.tag == "kund" && kassaBusy == false)
         {
             kund = collision.GetComponent<KundAI>();
-            if(kund.ordered == false)
+            if(kund.hasOrdered == false)
             {
                 
                 print("kund har kommit");

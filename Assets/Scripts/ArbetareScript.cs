@@ -55,7 +55,6 @@ public class ArbetareScript : ArbetareBase
         if (arbManage.kassaBusy == false)
         {
             anim.SetBool("ståNer", true);
-            arbManage.kund.ordered = true;
             print("fick kund");
             arbManage.kassaBusy = true; 
             movingTill = true;
@@ -103,11 +102,6 @@ public class ArbetareScript : ArbetareBase
         }
 
         breakTimer = 0;
-    }
-
-    void lastThing()
-    {
-        arbManage.kund.ordered = false;
     }
 
     //Start
@@ -208,7 +202,6 @@ public class ArbetareScript : ArbetareBase
                 arbManage.arbetareList.Add(gameObject);
                 arbManage.busyWorking.Remove(gameObject);
                 gameManager.money = gameManager.money + 20;
-                Invoke("lastThing", 0.5f);
             }   
         }
     }
