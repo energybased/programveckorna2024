@@ -673,7 +673,7 @@ GameObject:
   m_Layer: 0
   m_Name: StartPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -686,7 +686,7 @@ Transform:
   m_GameObject: {fileID: 461847055}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalPosition: {x: -4.54, y: 0.42, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -709,7 +709,7 @@ GameObject:
   m_Layer: 0
   m_Name: Tills
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -722,7 +722,7 @@ Transform:
   m_GameObject: {fileID: 740437731}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7, y: 0, z: 0}
+  m_LocalPosition: {x: -7, y: 0.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -740,7 +740,7 @@ GameObject:
   m_Layer: 0
   m_Name: DropOff
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -753,7 +753,7 @@ Transform:
   m_GameObject: {fileID: 786310267}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalPosition: {x: -2, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1077,7 +1077,7 @@ GameObject:
   m_Layer: 0
   m_Name: Station 3
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1513,7 +1513,7 @@ GameObject:
   m_Layer: 0
   m_Name: Station 2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1542,11 +1542,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 615816379636146345, guid: a2e34a6c5d9ce704a91d638a76c28087, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.106755525
+      value: -2.1
       objectReference: {fileID: 0}
     - target: {fileID: 615816379636146345, guid: a2e34a6c5d9ce704a91d638a76c28087, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.857097
+      value: -6.39
       objectReference: {fileID: 0}
     - target: {fileID: 615816379636146345, guid: a2e34a6c5d9ce704a91d638a76c28087, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1580,6 +1580,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8509883323048001441, guid: a2e34a6c5d9ce704a91d638a76c28087, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 8509883323048001441, guid: a2e34a6c5d9ce704a91d638a76c28087, type: 3}
       propertyPath: m_Name
       value: KundSpawner
@@ -1863,7 +1867,7 @@ GameObject:
   m_Layer: 0
   m_Name: Station 1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -6725,8 +6729,9 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -4.375, y: 2.375}
-      - {x: -4.375, y: -2.375}
-      - {x: 4.375, y: -2.375}
+      - {x: -4.375, y: -1.375}
+      - {x: 4.375, y: -1.375}
+      - {x: 4.375, y: -1.2297612}
       - {x: 4.375, y: -0.35596108}
       - {x: -3.532309, y: -0.3929112}
       - {x: -3.5325603, y: 1.3633337}
@@ -6801,7 +6806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4323087549265243960, guid: c593e51daee99294e86a68fa873efa95, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.11
+      value: -2.48
       objectReference: {fileID: 0}
     - target: {fileID: 4323087549265243960, guid: c593e51daee99294e86a68fa873efa95, type: 3}
       propertyPath: m_LocalPosition.y
