@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,22 +17,24 @@ public class uiGoalsOpacity : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        print("WE IN");
         isHovering = true;
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        print("WE OUT");
         isHovering = false;
     }
     
     void Update()
     {
-        
-        for (int i = 0; i < transform.childCount; i++)
+        var childrenArrayImage = transform.GetComponentsInChildren<Image>();
+        var childrenArrayText = transform.GetComponentsInChildren<TMP_Text>();
+        foreach (var childImage in childrenArrayImage)
         {
-            var tempChild = transform.GetChild(i).GetComponent<Image>();
-            tempChild.color = new Color(tempChild.color.r, tempChild.color.g,  tempChild.color.b, opacity);
+            childImage.color = new Color(childImage.color.r, childImage.color.g,  childImage.color.b, opacity);
+        }
+        foreach (var childText in childrenArrayText)
+        {
+            childText.color = new Color(childText.color.r, childText.color.g,  childText.color.b, opacity);
         }
         imageRef.color = new Color(imageRef.color.r, imageRef.color.g ,imageRef.color.b, opacity);
         

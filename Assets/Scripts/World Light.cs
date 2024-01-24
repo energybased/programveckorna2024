@@ -5,6 +5,7 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.Serialization;
 
 
+// All code written by Ronnie
 
 namespace WorldTime {
 
@@ -13,7 +14,7 @@ namespace WorldTime {
 
     public class WorldLight : MonoBehaviour
     {
-        public float duration = 600f;
+        public float duration = 600f; // The gradient has a duration of 600 seconds/10 minutes
 
         [SerializeField] private Gradient gradient;
         private Light2D _light;
