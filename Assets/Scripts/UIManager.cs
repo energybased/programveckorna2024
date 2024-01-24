@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     GameManager gameManager;
+    goalManager goalManager;
     Animator animator;
     Camera cam;
     bool spotlightPlayer;
@@ -41,6 +42,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        goalManager = FindObjectOfType<goalManager>();
         animator = gameObject.GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
         cam = FindObjectOfType<Camera>();
@@ -51,6 +53,8 @@ public class UIManager : MonoBehaviour
         if(gameManager.money >= cost)
         {
             gameManager.furnitureInventoryList.Add(furnitureData.furniturePrefab as GameObject);
+            var goalReference = goalManager.currentGoals.Find(obj=>obj.currentGoalType == goalBaseClass.goalTypes.Economic);
+            goalReference.goalProgress += cost;
             gameManager.money -= cost;
             print(furnitureData.name + " has been purchased successfully!");  
             print("Money spent: " + cost);
@@ -69,6 +73,8 @@ public class UIManager : MonoBehaviour
         var cost = interiorData.interiorCost;
         if(gameManager.money >= cost)
         {
+            var goalReference = goalManager.currentGoals.Find(obj=>obj.currentGoalType == goalBaseClass.goalTypes.Economic);
+            goalReference.goalProgress += cost;
             gameManager.money -= cost;
             print(interiorData.name + " has been purchased successfully!");  
             print("Money spent: " + cost);
@@ -154,6 +160,7 @@ public class UIManager : MonoBehaviour
         if(Input.GetMouseButton(1) && isConstructing)
         {
             Cursor.SetCursor(cursorStashTexture, Vector2.zero, CursorMode.ForceSoftware);
+            //replace with raycast
             var objectCheck = Physics2D.OverlapBox(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.one * 0.01f, 0, LayerMask.GetMask("Furniture"));
             if(objectCheck)
             {

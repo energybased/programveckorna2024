@@ -6,12 +6,32 @@ public class goalsTier2 : goalBaseClass
 {
     void Start()
     {
-        goalName = "a";
+        goalProgress = 0;
+        if(currentGoalType == goalTypes.Service)
+        {
+            goalName = "Serve 50 customers";
+            goalTarget = 50;
+        }
+        else if(currentGoalType == goalTypes.Economic)
+        {
+            goalName = "Spend 500$";
+            goalTarget = 500;
+        }
+        else if(currentGoalType == goalTypes.Management)
+        {
+            goalName = "Hire 6 employees";
+            goalTarget = 6;
+        }
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if(goalProgress >= goalTarget)
+        {
+            isCompleted = true;
+        }
+        else
+        {
+            isCompleted = false;
+        }
     }
 }

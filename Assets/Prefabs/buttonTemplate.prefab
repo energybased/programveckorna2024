@@ -200,7 +200,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8573355137497383938}
         m_TargetAssemblyTypeName: selectObjectFunction, Assembly-CSharp
         m_MethodName: SelectObject
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 4560301981751289694, guid: e7a86613668989447b5228c98b833241, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Café Stats")]
+    [Header("Cafe Stats")]
     public int money;
     public int totalComfort;
     public int totalDesign;

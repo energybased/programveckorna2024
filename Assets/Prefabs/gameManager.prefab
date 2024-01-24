@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5882111622935320889}
   - component: {fileID: 2273114875595206492}
+  - component: {fileID: 6250861902418557071}
   m_Layer: 0
   m_Name: gameManager
   m_TagString: Untagged
@@ -50,3 +51,30 @@ MonoBehaviour:
   totalAtmosphere: 0
   furnitureInventoryList: []
   furniturePlacedList: []
+--- !u!114 &6250861902418557071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4687435613718296148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a26c6685e64b584a893686c667c33f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentGoals: []
+  amountOfStars: 0
+  starSprites:
+  - {fileID: 411552928, guid: 83147715df2dfa04191186ada764db7d, type: 3}
+  - {fileID: -754237844, guid: 83147715df2dfa04191186ada764db7d, type: 3}
+  - {fileID: -2102593848, guid: 83147715df2dfa04191186ada764db7d, type: 3}
+  - {fileID: -1626373370, guid: 83147715df2dfa04191186ada764db7d, type: 3}
+  goalProgressionText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  goalText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

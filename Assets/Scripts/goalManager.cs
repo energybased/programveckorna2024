@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class goalManager : MonoBehaviour
 {
+    public List<goalBaseClass> currentGoals;
     public int amountOfStars;
     Image goalsStarsSpriteReference;
     [SerializeField]
     Sprite[] starSprites;
-    public List<goalBaseClass> currentGoals;
+    [Header("Goal Text References")]
+    [SerializeField]
+    TMP_Text[] goalProgressionText;
+    [SerializeField]
+    TMP_Text[] goalText;
     void Start()
     {
         goalsStarsSpriteReference = FindObjectOfType<uiGoalsOpacity>().transform.GetChild(0).GetComponent<Image>();
@@ -31,44 +37,60 @@ public class goalManager : MonoBehaviour
         }
         return true;
     }
-
+    void refreshGoalHUD()
+    {
+        goalText[0].SetText(currentGoals[0].goalName);
+        goalProgressionText[0].SetText("   " + currentGoals[0].goalProgress + "/" + currentGoals[0].goalTarget);
+        goalText[1].SetText(currentGoals[1].goalName);
+        goalProgressionText[1].SetText("   " + currentGoals[1].goalProgress + "/" + currentGoals[1].goalTarget);
+        goalText[2].SetText(currentGoals[2].goalName);
+        goalProgressionText[2].SetText("   " + currentGoals[2].goalProgress + "/" + currentGoals[2].goalTarget);
+    }
     void Update()
     {
         goalsStarsSpriteReference.sprite = starSprites[amountOfStars];
+        refreshGoalHUD();
         if(checkCurrentGoals())
         {
-            amountOfStars++;
-            if(amountOfStars == 1)
+            if(amountOfStars < 3)
             {
-                var componentsToRemove = gameObject.GetComponents<goalsTier1>();
-                for(int i = 0; i < componentsToRemove.Length; i++)
+                amountOfStars++;
+                if(amountOfStars == 1)
                 {
-                    Destroy(componentsToRemove[i]);
+                    var componentsToRemove = gameObject.GetComponents<goalsTier1>();
+                    for(int i = 0; i < componentsToRemove.Length; i++)
+                    {
+                        Destroy(componentsToRemove[i]);
+                    }
+                    currentGoals.Clear();
+                    for (int i = 0; i < 3; i++)
+                    {
+                        var componentsToAdd = gameObject.AddComponent(typeof(goalsTier2)) as goalsTier2;
+                        componentsToAdd.currentGoalType += i; 
+                        currentGoals.Add(componentsToAdd); 
+                    }
                 }
-                currentGoals.Clear();
-                for (int i = 0; i < 3; i++)
+                else if(amountOfStars == 2)
                 {
-                    var componentsToAdd = gameObject.AddComponent(typeof(goalsTier2)) as goalsTier2;
-                    componentsToAdd.currentGoalType += i;
-                    currentGoals.Add(componentsToAdd); 
+                    var componentsToRemove = gameObject.GetComponents<goalsTier2>();
+                    for(int i = 0; i < componentsToRemove.Length; i++)
+                    {
+                        Destroy(componentsToRemove[i]);
+                    }
+                    currentGoals.Clear();
+                    for (int i = 0; i < 3; i++)
+                    {
+                        var componentsToAdd = gameObject.AddComponent(typeof(goalsTier3)) as goalsTier3;
+                        componentsToAdd.currentGoalType += i;
+                        currentGoals.Add(componentsToAdd); 
+                    }
                 }
-                print("done?");
             }
-            else if(amountOfStars == 2)
+            else if(amountOfStars >= 3)
             {
-                var componentsToRemove = gameObject.GetComponents<goalsTier2>();
-                for(int i = 0; i < componentsToRemove.Length; i++)
-                {
-                    Destroy(componentsToRemove[i]);
-                }
-                currentGoals.Clear();
-                for (int i = 0; i < 3; i++)
-                {
-                    var componentsToAdd = gameObject.AddComponent(typeof(goalsTier3)) as goalsTier3;
-                    componentsToAdd.currentGoalType += i;
-                    currentGoals.Add(componentsToAdd); 
-                }
-                print("done?");
+                print("gg");
+                //completed!
+                //queue some cool particles or some shit
             }
         }
     }
