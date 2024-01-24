@@ -44,7 +44,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5Ner"
+    m_ConditionEvent: goDown
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5147166270565405189}
@@ -69,7 +69,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5H\xF6ger"
+    m_ConditionEvent: goRight
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7005619944477976525}
@@ -124,7 +124,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5V\xE4nster"
+    m_ConditionEvent: goLeft
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8620180090077468312}
@@ -149,7 +149,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5H\xF6ger"
+    m_ConditionEvent: goRight
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7005619944477976525}
@@ -204,7 +204,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5Upp"
+    m_ConditionEvent: goUp
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -15400496489708281}
@@ -229,7 +229,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5V\xE4nster"
+    m_ConditionEvent: goLeft
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8620180090077468312}
@@ -254,7 +254,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5H\xF6ger"
+    m_ConditionEvent: goRight
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7005619944477976525}
@@ -279,16 +279,16 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5Ner"
+    m_ConditionEvent: goDown
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5H\xF6ger"
+    m_ConditionEvent: goRight
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5V\xE4nster"
+    m_ConditionEvent: goLeft
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5Upp"
+    m_ConditionEvent: goUp
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4711336370184632937}
@@ -343,25 +343,25 @@ AnimatorController:
   m_Name: "unkg\xE5r"
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: "g\xE5H\xF6ger"
+  - m_Name: goRight
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: "g\xE5V\xE4nster"
+  - m_Name: goLeft
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: "g\xE5Upp"
+  - m_Name: goUp
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: "g\xE5Ner"
+  - m_Name: goDown
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -389,7 +389,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5Ner"
+    m_ConditionEvent: goDown
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5147166270565405189}
@@ -414,7 +414,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5Upp"
+    m_ConditionEvent: goUp
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -15400496489708281}
@@ -439,16 +439,16 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5V\xE4nster"
+    m_ConditionEvent: goLeft
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5H\xF6ger"
+    m_ConditionEvent: goRight
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5Upp"
+    m_ConditionEvent: goUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5Ner"
+    m_ConditionEvent: goDown
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4711336370184632937}
@@ -473,7 +473,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5V\xE4nster"
+    m_ConditionEvent: goLeft
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8620180090077468312}
@@ -498,7 +498,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5Upp"
+    m_ConditionEvent: goUp
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -15400496489708281}
@@ -537,7 +537,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5H\xF6ger"
+    m_ConditionEvent: goRight
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7005619944477976525}
@@ -562,7 +562,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5V\xE4nster"
+    m_ConditionEvent: goLeft
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8620180090077468312}
@@ -617,16 +617,16 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5Upp"
+    m_ConditionEvent: goUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5H\xF6ger"
+    m_ConditionEvent: goRight
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5V\xE4nster"
+    m_ConditionEvent: goLeft
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5Ner"
+    m_ConditionEvent: goDown
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4711336370184632937}
@@ -651,7 +651,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5Ner"
+    m_ConditionEvent: goDown
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5147166270565405189}
@@ -676,16 +676,16 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5H\xF6ger"
+    m_ConditionEvent: goRight
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5V\xE4nster"
+    m_ConditionEvent: goLeft
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5Upp"
+    m_ConditionEvent: goUp
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: "g\xE5Ner"
+    m_ConditionEvent: goDown
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4711336370184632937}
@@ -710,7 +710,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5Upp"
+    m_ConditionEvent: goUp
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -15400496489708281}
@@ -765,7 +765,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "g\xE5Ner"
+    m_ConditionEvent: goDown
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5147166270565405189}

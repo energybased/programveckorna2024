@@ -7,7 +7,7 @@ using TMPro;
 public class ArbetareManager : ArbetareBase
 {
     public List<GameObject> arbetareList = new List<GameObject>();
-    public List<GameObject> v‰ntarPÂAnst‰llning = new List<GameObject>();
+    public List<GameObject> waitingForHire = new List<GameObject>();
     List<GameObject> tiredWorker = new List<GameObject>();
     public List<GameObject> busyWorking = new List<GameObject>();
 
@@ -58,7 +58,7 @@ public class ArbetareManager : ArbetareBase
         {
             GameObject newestWorker = Instantiate(worker, workerSpawn, Quaternion.identity);
             Instantiate(CV, newestWorker.transform);
-            v‰ntarPÂAnst‰llning.Add(newestWorker);
+            waitingForHire.Add(newestWorker);
             workerSpawn.x += 5;
         }
         Invoke("cvShowStats",0.2f);
@@ -66,33 +66,33 @@ public class ArbetareManager : ArbetareBase
 
     void cvShowStats()
     {
-        CV CVtemp = v‰ntarPÂAnst‰llning[0].GetComponentInChildren<CV>();
+        CV CVtemp = waitingForHire[0].GetComponentInChildren<CV>();
         statText1.text = "Quality: " + CVtemp.workerQuality + " Speed: " + CVtemp.workerSpeed + " Service: " + CVtemp.workerService + " Energy: " + CVtemp.restingTime;
-        CVtemp = v‰ntarPÂAnst‰llning[1].GetComponentInChildren<CV>();
+        CVtemp = waitingForHire[1].GetComponentInChildren<CV>();
         statText2.text = "Quality: " + CVtemp.workerQuality + " Speed: " + CVtemp.workerSpeed + " Service: " + CVtemp.workerService + " Energy: " + CVtemp.restingTime;
-        CVtemp = v‰ntarPÂAnst‰llning[2].GetComponentInChildren<CV>();
+        CVtemp = waitingForHire[2].GetComponentInChildren<CV>();
         statText3.text = "Quality: " + CVtemp.workerQuality + " Speed: " + CVtemp.workerSpeed + " Service: " + CVtemp.workerService + " Energy: " + CVtemp.restingTime;
     }
 
     //choose a guy (or woman)
     public void guy1()
     {
-        arbetareList.Add(v‰ntarPÂAnst‰llning[0]);
-        v‰ntarPÂAnst‰llning.RemoveAt(0);
+        arbetareList.Add(waitingForHire[0]);
+        waitingForHire.RemoveAt(0);
         restoreGuyLists();
     }
 
     public void guy2()
     {
-        arbetareList.Add(v‰ntarPÂAnst‰llning[1]);
-        v‰ntarPÂAnst‰llning.RemoveAt(1);
+        arbetareList.Add(waitingForHire[1]);
+        waitingForHire.RemoveAt(1);
         restoreGuyLists();
     }
 
     public void guy3()
     {
-        arbetareList.Add(v‰ntarPÂAnst‰llning[2]);
-        v‰ntarPÂAnst‰llning.RemoveAt(2);
+        arbetareList.Add(waitingForHire[2]);
+        waitingForHire.RemoveAt(2);
         restoreGuyLists();
     }
     public void restoreGuyLists()
@@ -102,12 +102,12 @@ public class ArbetareManager : ArbetareBase
         var temp = arbetareList.Last();
         temp.transform.position = Vector3.MoveTowards(temp.transform.position, startPos.transform.position, 1000);
         
-        foreach (var GameObject in v‰ntarPÂAnst‰llning)
+        foreach (var GameObject in waitingForHire)
         {
             Destroy(GameObject);
         }
 
-        v‰ntarPÂAnst‰llning.Clear();
+        waitingForHire.Clear();
         guys.enabled = false;
 
         Invoke("countStats", 0.5f);

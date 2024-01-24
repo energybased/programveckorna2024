@@ -37,7 +37,7 @@ public class ArbetareScript : ArbetareBase
 
     public void goToTills()
     {
-        anim.SetBool("ståNer", true);
+        anim.SetBool("standDown", true);
         print("fick kund");
         movingTill = true;
     }
@@ -112,8 +112,8 @@ public class ArbetareScript : ArbetareBase
 
         if (movingTill == true)
         {
-            anim.SetBool("ståNer", false);
-            anim.SetBool("går", true);
+            anim.SetBool("standDown", false);
+            anim.SetBool("walks", true);
             if (transform.position != arbManage.kassaPos.transform.position)
             {
                 transform.position = Vector3.MoveTowards(transform.position, arbManage.kassaPos.transform.position, step);
@@ -122,8 +122,8 @@ public class ArbetareScript : ArbetareBase
             {
                 print("gick till kunden");
 
-                anim.SetBool("ståNer", true);
-                anim.SetBool("går", false);
+                anim.SetBool("standDown", true);
+                anim.SetBool("walks", false);
 
                 serviceTime = 2f;
                 for (int i = 0; i < workerService; i++)
@@ -152,17 +152,17 @@ public class ArbetareScript : ArbetareBase
         
         if (movingCook == true)
         {
-            anim.SetBool("går", true);
+            anim.SetBool("walks", true);
             GetComponent<SpriteRenderer>().flipX = true;
-            anim.SetBool("ståNer", false);
+            anim.SetBool("standDown", false);
             if(transform.position != arbManage.usedStations.Last().transform.position)
             {
                 transform.position = Vector3.MoveTowards(transform.position, arbManage.usedStations.Last().transform.position, step);
             }
             else
             {
-                anim.SetBool("arbeting", true);
-                anim.SetBool("går", false);
+                anim.SetBool("working", true);
+                anim.SetBool("walks", false);
                 GetComponent<SpriteRenderer>().flipX = false;
                 print("moved to cook");
                 movingCook = false;
@@ -176,7 +176,7 @@ public class ArbetareScript : ArbetareBase
                     cookTime *= 2;
                 }
                 arbManage.kassaBusy = false;
-                anim.SetBool("arbeting", false);
+                anim.SetBool("working", false);
                 Invoke("giveDrink", cookTime);
             }
         }
@@ -184,14 +184,14 @@ public class ArbetareScript : ArbetareBase
         if(movingDropOff == true)
         {
             print("finished everything");
-            anim.SetBool("arbeting", false);
-            anim.SetBool("går", true);
+            anim.SetBool("working", false);
+            anim.SetBool("walks", true);
             GetComponent<SpriteRenderer>().flipX = true;
             transform.position = Vector3.MoveTowards(transform.position, arbManage.dropOffPos.transform.position,step);
             if(transform.position == arbManage.dropOffPos.transform.position)
             {
-                anim.SetBool("ståNer", true);
-                anim.SetBool("går", false);
+                anim.SetBool("standDown", true);
+                anim.SetBool("walks", false);
                 GetComponent<SpriteRenderer>().flipX = false;
                 arbManage.kund.drinkyDone = true;
                 arbManage.availableStations.Add(arbManage.usedStations[0]);
