@@ -41,26 +41,14 @@ public class ArbetareManager : ArbetareBase
         if (collision.gameObject.tag == "kund" && kassaBusy == false)
         {
             kund = collision.GetComponent<KundAI>();
-            if(kund.hasOrdered == false)
-            {
+            kassaBusy = true;
+            print("kund har kommit");
                 
-                print("kund har kommit");
-                
-                busyWorking.Add(arbetareList[0]);
-                if (kassaBusy == false)
-                { 
-                    busyWorking.Last().GetComponent<ArbetareScript>().goToTills();
-                }
-                else
-                {
-                    busyWorking.Last().GetComponent<ArbetareScript>().repeatUntilAwesome();
-                }
-
-                arbetareList.RemoveAt(0);
-            }
+            busyWorking.Add(arbetareList[0]);
+            busyWorking.Last().GetComponent<ArbetareScript>().goToTills();
+            arbetareList.RemoveAt(0);         
         }
     }
-
     
     public void newWorker()
     {

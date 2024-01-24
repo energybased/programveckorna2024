@@ -17,6 +17,7 @@ public class KundAI : MonoBehaviour
 
     public bool hasOrdered = false;
     bool hasPickedUp = false;
+    public bool drinkyDone;
 
     Path path;
     
@@ -90,10 +91,6 @@ public class KundAI : MonoBehaviour
             StartCoroutine(CoffeeOrder());  
         }
 
-        if(Collision.gameObject.tag == "Arbetare" && hasOrdered == true && hasPickedUp == false)
-        {
-            CoffeePickUp();
-        }
     }   
     IEnumerator CoffeeOrder()
         {
@@ -112,17 +109,24 @@ public class KundAI : MonoBehaviour
     }
 
     void CoffeePickUp()
-        {
+    {
             hasPickedUp =  true;
             path = null;
             seeker.StartPath(rb2d.position, emptyTable.position, OnPathComplete);
             Debug.Log("Going to Exit");
             Debug.Log("Has picked up order");
             StartCoroutine(DeSpawn());
-        }
+
+    }
 
     private void Update()
     {
+        if(drinkyDone == true)
+        {
+            drinkyDone = false;
+            CoffeePickUp();
+        }
+
         if (rb2d.velocity.x > 0)
         {
             anim.SetBool("goSide", true);
