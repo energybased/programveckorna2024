@@ -472,13 +472,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a26c6685e64b584a893686c667c33f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentGoals: []
   amountOfStars: 0
   starSprites:
   - {fileID: 411552928, guid: 83147715df2dfa04191186ada764db7d, type: 3}
   - {fileID: -754237844, guid: 83147715df2dfa04191186ada764db7d, type: 3}
   - {fileID: -2102593848, guid: 83147715df2dfa04191186ada764db7d, type: 3}
   - {fileID: -1626373370, guid: 83147715df2dfa04191186ada764db7d, type: 3}
-  currentGoals: []
+  goalProgressionText: []
+  goalText: []
 --- !u!114 &271765510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,7 +498,7 @@ MonoBehaviour:
   workerService: 0
   restingTime: 0
   arbetareList: []
-  "v\xE4ntarP\xE5Anst\xE4llning": []
+  waitingForHire: []
   busyWorking: []
   availableStations:
   - {fileID: 1569042926}
@@ -6546,52 +6548,68 @@ PrefabInstance:
       value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
+      propertyPath: gradient.ctime3
+      value: 25092
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
+      propertyPath: gradient.ctime4
+      value: 38008
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
+      propertyPath: gradient.ctime5
+      value: 41714
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
+      propertyPath: gradient.ctime6
+      value: 46478
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: gradient.key0.b
-      value: 0.6415094
+      value: 0.4784314
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: gradient.key0.g
-      value: 0.2965468
+      value: 0.17254902
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: gradient.key0.r
-      value: 0.23905303
+      value: 0.121568635
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: gradient.key1.b
-      value: 0.28368637
+      value: 0.13862497
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: gradient.key1.g
-      value: 0.33215114
+      value: 0.19005711
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: gradient.key1.r
-      value: 0.8018868
+      value: 0.68252677
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: gradient.key5.b
-      value: 0.26610893
+      value: 0.1254902
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: gradient.key5.g
-      value: 0.3432648
+      value: 0.20392159
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: gradient.key5.r
-      value: 0.8679245
+      value: 0.7372549
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: gradient.key6.b
-      value: 0.6431373
+      value: 0.45098042
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: gradient.key6.g
-      value: 0.29803923
+      value: 0.14901961
       objectReference: {fileID: 0}
     - target: {fileID: 7071105766756455249, guid: 4df9c180db4412f46b166641a66f22fc, type: 3}
       propertyPath: gradient.key6.r
-      value: 0.2392157
+      value: 0.121568635
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

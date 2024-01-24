@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c4088ec032ab24eb89fb8bcfbf2189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 960
+  duration: 600
   gradient:
     serializedVersion: 2
     key0: {r: 0.121568635, g: 0.17254902, b: 0.4784314, a: 1}
@@ -109,10 +109,10 @@ MonoBehaviour:
     ctime0: 5294
     ctime1: 11328
     ctime2: 15881
-    ctime3: 25092
-    ctime4: 38008
-    ctime5: 41714
-    ctime6: 46478
+    ctime3: 27527
+    ctime4: 40337
+    ctime5: 45843
+    ctime6: 51136
     ctime7: 0
     atime0: 0
     atime1: 65535
