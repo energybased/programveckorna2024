@@ -82,6 +82,12 @@ public class ArbetareScript : ArbetareBase
         }
 
         breakTimer = 0;
+
+        serviceTime = 0;
+        for (int i = 0; i < workerService; i++)
+        {
+            serviceTime -= 0.5f;
+        }
     }
 
     //Start
@@ -95,6 +101,8 @@ public class ArbetareScript : ArbetareBase
         anim = GetComponent<Animator>();
 
         Invoke("stats", 1f);
+
+
     }
 
     //Update
@@ -125,15 +133,6 @@ public class ArbetareScript : ArbetareBase
                 anim.SetBool("standDown", true);
                 anim.SetBool("walks", false);
 
-                serviceTime = 2f;
-                for (int i = 0; i < workerService; i++)
-                {
-                    serviceTime -= 0.3f;
-                }
-                if (tiredHappened == true)
-                {
-                    serviceTime *= 2;
-                }
                 print("service time calced");
                 movingTill = false;
             }
@@ -146,7 +145,7 @@ public class ArbetareScript : ArbetareBase
             {
                 cookOnce = true;
                 print("ordere true");
-                Invoke("cook", serviceTime);
+                cook();
             }
         }
         
@@ -166,10 +165,10 @@ public class ArbetareScript : ArbetareBase
                 GetComponent<SpriteRenderer>().flipX = false;
                 print("moved to cook");
                 movingCook = false;
-                cookTime = 2f;
+                cookTime = 3f;
                 for (int i = 0; i < workerSpeed; i++)
                 {
-                    cookTime -= 0.3f;
+                    cookTime -= 0.5f;
                 }
                 if (tiredHappened == true)
                 {
@@ -199,7 +198,12 @@ public class ArbetareScript : ArbetareBase
                 movingDropOff = false;
                 arbManage.arbetareList.Add(gameObject);
                 arbManage.busyWorking.Remove(gameObject);
-                gameManager.money = gameManager.money + 20;
+
+                for (int i = 0; i < workerQuality; i++)
+                {
+                    gameManager.money = gameManager.money + 5;
+                }
+    
                 cookOnce = false;
             }   
         }

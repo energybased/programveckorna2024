@@ -45,7 +45,14 @@ public class ArbetareManager : ArbetareBase
             print("kund har kommit");
                 
             busyWorking.Add(arbetareList[0]);
-            busyWorking.Last().GetComponent<ArbetareScript>().goToTills();
+            kund.coffeeTimer = 5;
+            ArbetareScript lastWorker = busyWorking.Last().GetComponent<ArbetareScript>();
+            if(lastWorker.tiredHappened)
+            {
+                lastWorker.serviceTime *= 0.5f;
+            }
+            kund.coffeeTimer -= lastWorker.serviceTime;
+            lastWorker.goToTills();
             arbetareList.RemoveAt(0);         
         }
     }

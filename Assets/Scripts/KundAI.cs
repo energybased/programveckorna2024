@@ -20,7 +20,8 @@ public class KundAI : MonoBehaviour
     public bool drinkyDone;
 
     Path path;
-    
+
+    public float coffeeTimer;
     
     bool ReachedEndOfPath = false;
 
@@ -42,7 +43,7 @@ public class KundAI : MonoBehaviour
             Debug.Log("Going to Till");
         }   
     }
-
+    
     void OnPathComplete(Path p)
     {
         if(!p.error)
@@ -88,19 +89,18 @@ public class KundAI : MonoBehaviour
         
         if(Collision.gameObject.tag == "Arbetare" && hasOrdered == false && hasPickedUp == false)
         {
-            StartCoroutine(CoffeeOrder());  
+            Invoke("CoffeeOrder", coffeeTimer);  
         }
 
     }   
-    IEnumerator CoffeeOrder()
-        {
+    void CoffeeOrder()
+    {
             Debug.Log("Ordering Coffee");
             path = null;
-            yield return new WaitForSeconds(5);
             hasOrdered = true;
             seeker.StartPath(rb2d.position, pickUp.position, OnPathComplete);
             Debug.Log("Going to PickUp");
-        }
+    }
 
     IEnumerator DeSpawn()
     {
