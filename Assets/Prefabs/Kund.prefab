@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2788796008604314528}
   - component: {fileID: 5232545195833607459}
   - component: {fileID: 7752801026113374985}
-  - component: {fileID: 9080510537249262316}
+  - component: {fileID: -7994099825928860643}
   m_Layer: 0
   m_Name: Kund
   m_TagString: kund
@@ -122,7 +122,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0040659904, y: 3.0757349}
+  m_Offset: {x: 0.0040659904, y: 2.7901707}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -133,7 +133,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.61566734, y: 0.07119799}
+  m_Size: {x: 0.61566734, y: 0.044776917}
   m_EdgeRadius: 0
 --- !u!50 &956210638360240439
 Rigidbody2D:
@@ -161,7 +161,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2788796008604314528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,8 +229,8 @@ MonoBehaviour:
   speed: 200
   nextWayPointDistance: 1
   currentWaypoint: 0
-  ordered: 0
---- !u!61 &9080510537249262316
+  hasOrdered: 0
+--- !u!61 &-7994099825928860643
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,7 +245,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -262,7 +262,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.015037954, y: -0.12030506}
+  m_Offset: {x: 0.00000011920929, y: -0.41547012}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -273,5 +273,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6090106, y: 1.6390858}
+  m_Size: {x: 0.7040484, y: 1.1690598}
   m_EdgeRadius: 0
