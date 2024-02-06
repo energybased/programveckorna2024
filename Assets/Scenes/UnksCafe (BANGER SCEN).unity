@@ -460,27 +460,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4687435613718296148, guid: 7e6bf96b71376de42bca9a44e650c30b, type: 3}
   m_PrefabInstance: {fileID: 4138215887617051047}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &271765509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271765506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a26c6685e64b584a893686c667c33f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentGoals: []
-  amountOfStars: 0
-  starSprites:
-  - {fileID: 411552928, guid: 83147715df2dfa04191186ada764db7d, type: 3}
-  - {fileID: -754237844, guid: 83147715df2dfa04191186ada764db7d, type: 3}
-  - {fileID: -2102593848, guid: 83147715df2dfa04191186ada764db7d, type: 3}
-  - {fileID: -1626373370, guid: 83147715df2dfa04191186ada764db7d, type: 3}
-  goalProgressionText: []
-  goalText: []
 --- !u!114 &271765510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,13 +477,15 @@ MonoBehaviour:
   workerService: 0
   restingTime: 0
   arbetareList: []
-  waitingForHire: []
   busyWorking: []
   availableStations:
   - {fileID: 1569042926}
   - {fileID: 1498274795}
   - {fileID: 972517666}
   usedStations: []
+  workerSkins:
+  - {fileID: 5984601520741031296, guid: c0352431d7b68094484c61d2b31af664, type: 3}
+  - {fileID: 5984601520741031296, guid: a84b3a61ceddd7f459888b82d78382c5, type: 3}
   guys: {fileID: 21971666}
   worker: {fileID: 5984601520741031296, guid: c0352431d7b68094484c61d2b31af664, type: 3}
   CV: {fileID: 2102241323425898381, guid: 14c48d4becf87004b83de1e8a67b9563, type: 3}
@@ -6992,9 +6973,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4687435613718296148, guid: 7e6bf96b71376de42bca9a44e650c30b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 271765509}
     - targetCorrespondingSourceObject: {fileID: 4687435613718296148, guid: 7e6bf96b71376de42bca9a44e650c30b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 271765510}

@@ -7,12 +7,14 @@ using TMPro;
 public class ArbetareManager : ArbetareBase
 {
     public List<GameObject> arbetareList = new List<GameObject>();
-    public List<GameObject> waitingForHire = new List<GameObject>();
+    List<GameObject> waitingForHire = new List<GameObject>();
     List<GameObject> tiredWorker = new List<GameObject>();
     public List<GameObject> busyWorking = new List<GameObject>();
 
     public List<GameObject> availableStations = new List<GameObject>();
     public List<GameObject> usedStations = new List<GameObject>();
+
+    [SerializeField] List<GameObject> workerSkins = new List<GameObject>();
 
     [SerializeField] Canvas guys;
     [SerializeField] GameObject worker;
@@ -63,7 +65,7 @@ public class ArbetareManager : ArbetareBase
         Vector2 workerSpawn = new Vector2(-5, 0);
         for (int i = 0; i < 3; i++)
         {
-            GameObject newestWorker = Instantiate(worker, workerSpawn, Quaternion.identity);
+            GameObject newestWorker = Instantiate(workerSkins[Random.Range(0,workerSkins.Count)], workerSpawn, Quaternion.identity);
             Instantiate(CV, newestWorker.transform);
             waitingForHire.Add(newestWorker);
             workerSpawn.x += 5;
