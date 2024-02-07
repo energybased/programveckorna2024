@@ -1607,6 +1607,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3809028740851381432, guid: a2e34a6c5d9ce704a91d638a76c28087, type: 3}
+      propertyPath: kundSkins.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809028740851381432, guid: a2e34a6c5d9ce704a91d638a76c28087, type: 3}
+      propertyPath: kundSkins.Array.data[0]
+      value: 
+      objectReference: {fileID: 3565958248007075384, guid: 6bb34101c9a2ccc48a9c3158ae010d72, type: 3}
+    - target: {fileID: 3809028740851381432, guid: a2e34a6c5d9ce704a91d638a76c28087, type: 3}
+      propertyPath: kundSkins.Array.data[1]
+      value: 
+      objectReference: {fileID: 3565958248007075384, guid: 878e336618f04c64e9d4b47e51afd6da, type: 3}
     - target: {fileID: 8509883323048001441, guid: a2e34a6c5d9ce704a91d638a76c28087, type: 3}
       propertyPath: m_Icon
       value: 
