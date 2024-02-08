@@ -14,6 +14,7 @@ public class KundSpawner : MonoBehaviour
     [SerializeField]
     int NumberOfKunder = 0;
 
+    [SerializeField] List<GameObject> kundSkins = new List<GameObject>();
     void Start()
     {
         counterSpeed = 1;
@@ -32,7 +33,7 @@ public class KundSpawner : MonoBehaviour
             {
                 AstarPath.active.Scan();
                 counter = 0;
-                Instantiate(kundPrefab, transform.position,transform.rotation);
+                Instantiate(kundSkins[Random.Range(0,kundSkins.Count)], transform.position,transform.rotation);
                 NumberOfKunder += 1;
 
             }
