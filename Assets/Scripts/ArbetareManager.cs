@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ArbetareManager : ArbetareBase
 {
@@ -19,6 +20,7 @@ public class ArbetareManager : ArbetareBase
     [SerializeField] Canvas guys;
     [SerializeField] GameObject worker;
     [SerializeField] GameObject CV;
+    [SerializeField] GameObject unk;
 
     public GameObject startPos;
     public GameObject kassaPos;
@@ -38,6 +40,10 @@ public class ArbetareManager : ArbetareBase
     [SerializeField] TextMeshProUGUI statText2;
     [SerializeField] TextMeshProUGUI statText3;
 
+    [SerializeField] RectTransform rt;
+
+    Vector3 scaleChange = new Vector3(0.5f, 0.5f, 0.5f);
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "kund" && kassaBusy == false)
@@ -46,7 +52,7 @@ public class ArbetareManager : ArbetareBase
             kassaBusy = true;
             print("kund har kommit");
                 
-            busyWorking.Add(arbetareList[0]);
+            busyWorking.Add(arbetareList[0]);   
             kund.coffeeTimer = 5;
             ArbetareScript lastWorker = busyWorking.Last().GetComponent<ArbetareScript>();
             if(lastWorker.tiredHappened)
@@ -62,13 +68,18 @@ public class ArbetareManager : ArbetareBase
     public void newWorker()
     {
         guys.enabled = true;
-        Vector2 workerSpawn = new Vector2(-5, 0);
+        Vector2 workerSpawn = new Vector2(unk.transform.position.x, unk.transform.position.y);
+        workerSpawn.x -= 6;
+        workerSpawn.y += 1;
+
+
         for (int i = 0; i < 3; i++)
         {
             GameObject newestWorker = Instantiate(workerSkins[Random.Range(0,workerSkins.Count)], workerSpawn, Quaternion.identity);
+            newestWorker.transform.localScale -= scaleChange;
             Instantiate(CV, newestWorker.transform);
             waitingForHire.Add(newestWorker);
-            workerSpawn.x += 5;
+            workerSpawn.x += 1.3f;
         }
         Invoke("cvShowStats",0.2f);
     }
@@ -154,7 +165,6 @@ public class ArbetareManager : ArbetareBase
         arbetareList.Clear();
         tiredWorker.Clear();
         busyWorking.Clear();
-        
     }
 
     // Update is called once per frame
