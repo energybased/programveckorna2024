@@ -40,8 +40,6 @@ public class ArbetareManager : ArbetareBase
     [SerializeField] TextMeshProUGUI statText2;
     [SerializeField] TextMeshProUGUI statText3;
 
-    [SerializeField] RectTransform rt;
-
     Vector3 scaleChange = new Vector3(0.5f, 0.5f, 0.5f);
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -65,6 +63,32 @@ public class ArbetareManager : ArbetareBase
         }
     }
     
+    public void checkForWorkers()
+    {
+        if(totalGuys < 3 && waitingForHire.Count == 0)
+        {
+            newWorker();
+        }
+        else
+        {
+            for (int i = 0; i < waitingForHire.Count; i++)
+            {
+                waitingForHire[i].SetActive(true);
+            }
+        }
+    }
+
+    public void closeApplicantsTab()
+    {
+        if(waitingForHire != null)
+        {
+            for (int i = 0; i < waitingForHire.Count; i++)
+            {
+                waitingForHire[i].SetActive(false);
+            }
+        }
+    }
+
     public void newWorker()
     {
         guys.enabled = true;
