@@ -17,7 +17,7 @@ public class ArbetareManager : ArbetareBase
 
     [SerializeField] List<GameObject> workerSkins = new List<GameObject>();
 
-    [SerializeField] Canvas guys;
+    [SerializeField] List<Button> guys = new List<Button>();
     [SerializeField] GameObject worker;
     [SerializeField] GameObject CV;
     [SerializeField] GameObject unk;
@@ -41,6 +41,9 @@ public class ArbetareManager : ArbetareBase
     [SerializeField] TextMeshProUGUI statText3;
 
     Vector3 scaleChange = new Vector3(0.5f, 0.5f, 0.5f);
+    Vector2 workerSpawn = new Vector2(0, 0);
+
+    [SerializeField] TextMeshProUGUI noMoreGuys;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -71,9 +74,15 @@ public class ArbetareManager : ArbetareBase
         }
         else
         {
+            Vector2 workerSpawn = new Vector2(unk.transform.position.x, unk.transform.position.y);
+            workerSpawn.x -= 5.9f;
+            workerSpawn.y += 0.7f;
+
             for (int i = 0; i < waitingForHire.Count; i++)
             {
                 waitingForHire[i].SetActive(true);
+                waitingForHire[i].transform.position = workerSpawn;
+                workerSpawn.x += 1.2f;
             }
         }
     }
@@ -91,10 +100,14 @@ public class ArbetareManager : ArbetareBase
 
     public void newWorker()
     {
-        guys.enabled = true;
-        Vector2 workerSpawn = new Vector2(unk.transform.position.x, unk.transform.position.y);
-        workerSpawn.x -= 6;
-        workerSpawn.y += 1;
+        for (int i = 0; i < guys.Count; i++)
+        {
+            guys[i].enabled = true;
+        }
+       
+        workerSpawn = new Vector2(unk.transform.position.x, unk.transform.position.y);
+        workerSpawn.x -= 5.9f;
+        workerSpawn.y += 0.7f;
 
 
         for (int i = 0; i < 3; i++)
@@ -103,7 +116,7 @@ public class ArbetareManager : ArbetareBase
             newestWorker.transform.localScale -= scaleChange;
             Instantiate(CV, newestWorker.transform);
             waitingForHire.Add(newestWorker);
-            workerSpawn.x += 1.3f;
+            workerSpawn.x += 1.2f;
         }
         Invoke("cvShowStats",0.2f);
     }
@@ -141,9 +154,11 @@ public class ArbetareManager : ArbetareBase
     }
     public void restoreGuyLists()
     {
-        arbetareList.Last().GetComponent<ArbetareScript>().breakTimer = 0;
-        totalGuys += 1;
         var temp = arbetareList.Last();
+        temp.GetComponent<ArbetareScript>().breakTimer = 0;
+        temp.transform.localScale += scaleChange;
+        totalGuys += 1;
+        
         temp.transform.position = Vector3.MoveTowards(temp.transform.position, startPos.transform.position, 1000);
         
         foreach (var GameObject in waitingForHire)
@@ -152,7 +167,6 @@ public class ArbetareManager : ArbetareBase
         }
 
         waitingForHire.Clear();
-        guys.enabled = false;
 
         Invoke("countStats", 0.5f);
     }
@@ -184,7 +198,11 @@ public class ArbetareManager : ArbetareBase
     // Start is called before the first frame update
     void Start()
     {
-        guys.enabled = false;
+        for (int i = 0; i < guys.Count; i++)
+        {
+            guys[i].enabled = false;
+        }
+        noMoreGuys.enabled = false;
 
         arbetareList.Clear();
         tiredWorker.Clear();
@@ -209,6 +227,21 @@ public class ArbetareManager : ArbetareBase
             if (tiredWorker[i].GetComponent<ArbetareScript>().tiredHappened == false)
             {
                 tiredWorker.RemoveAt(i);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab) && waitingForHire != null)
+        {
+            closeApplicantsTab();
+        }   
+
+        if(totalGuys == 3)
+        {
+            noMoreGuys.enabled = true;
+
+            for (int i = 0; i < guys.Count; i++)
+            {
+                guys[i].gameObject.SetActive(false);
             }
         }
     }
