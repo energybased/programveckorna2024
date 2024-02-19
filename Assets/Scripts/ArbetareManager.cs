@@ -7,26 +7,28 @@ using UnityEngine.UI;
 
 public class ArbetareManager : ArbetareBase
 {
-    public List<GameObject> arbetareList = new List<GameObject>();
-    List<GameObject> waitingForHire = new List<GameObject>();
-    List<GameObject> tiredWorker = new List<GameObject>();
-    public List<GameObject> busyWorking = new List<GameObject>();
+    //max skrev allt
 
-    public List<GameObject> availableStations = new List<GameObject>();
+    public List<GameObject> arbetareList = new List<GameObject>(); //lista av arbetare
+    List<GameObject> waitingForHire = new List<GameObject>(); //lista av folk som kan bli anställda
+    List<GameObject> tiredWorker = new List<GameObject>(); //trötta arbetare
+    public List<GameObject> busyWorking = new List<GameObject>(); //arbetare som jobbar
+
+    public List<GameObject> availableStations = new List<GameObject>(); //arbetsstationer
     public List<GameObject> usedStations = new List<GameObject>();
 
-    [SerializeField] List<GameObject> workerSkins = new List<GameObject>();
+    [SerializeField] List<GameObject> workerSkins = new List<GameObject>(); //arbetare olika variationer
 
     [SerializeField] List<Button> guys = new List<Button>();
     [SerializeField] GameObject worker;
     [SerializeField] GameObject CV;
     [SerializeField] GameObject unk;
 
-    public GameObject startPos;
+    public GameObject startPos; //pathfinding
     public GameObject kassaPos;
     public GameObject dropOffPos;
 
-    float totalSpeed;
+    float totalSpeed; //stats
     float totalQuality;
     float totalService;
     int totalTired;
@@ -34,46 +36,49 @@ public class ArbetareManager : ArbetareBase
 
     public bool kassaBusy = false;
 
-    public KundAI kund;
+    public KundAI kund; //hitta kund
 
-    [SerializeField] TextMeshProUGUI statText1;
+    [SerializeField] TextMeshProUGUI statText1; //texter
     [SerializeField] TextMeshProUGUI statText2;
     [SerializeField] TextMeshProUGUI statText3;
 
-    Vector3 scaleChange = new Vector3(0.5f, 0.5f, 0.5f);
+    Vector3 scaleChange = new Vector3(0.5f, 0.5f, 0.5f); //worker positions and scale
     Vector2 workerSpawn = new Vector2(0, 0);
 
-    [SerializeField] TextMeshProUGUI noMoreGuys;
+    [SerializeField] TextMeshProUGUI noMoreGuys; //text
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "kund" && kassaBusy == false)
+        if (collision.gameObject.tag == "kund" && kassaBusy == false) //om en kund kommer
         {
             kund = collision.GetComponent<KundAI>();
             kassaBusy = true;
-            print("kund har kommit");
+            print("kund har kommit"); //kunden har kommint
                 
-            busyWorking.Add(arbetareList[0]);   
+            busyWorking.Add(arbetareList[0]);  //hitta arbetare, börja kund kod
             kund.coffeeTimer = 5;
             ArbetareScript lastWorker = busyWorking.Last().GetComponent<ArbetareScript>();
-            if(lastWorker.tiredHappened)
+
+            if(lastWorker.tiredHappened) //om arbetare är tröt
             {
                 lastWorker.serviceTime *= 0.5f;
             }
-            kund.coffeeTimer -= lastWorker.serviceTime;
-            lastWorker.goToTills();
+            kund.coffeeTimer -= lastWorker.serviceTime; 
+            lastWorker.goToTills(); //ta arbetaren och få den att jobba
             arbetareList.RemoveAt(0);         
         }
     }
     
-    public void checkForWorkers()
+    public void checkForWorkers() //kollar ifall arbetare att anställa finns
     {
-        if(totalGuys < 3 && waitingForHire.Count == 0)
+        if(totalGuys < 3 && waitingForHire.Count == 0) 
         {
-            newWorker();
+            newWorker(); //skapar nya arbetare
         }
         else
         {
+            //gör arbetarna aktiva att anställa
+
             Vector2 workerSpawn = new Vector2(unk.transform.position.x, unk.transform.position.y);
             workerSpawn.x -= 5.9f;
             workerSpawn.y += 0.7f;
@@ -87,7 +92,7 @@ public class ArbetareManager : ArbetareBase
         }
     }
 
-    public void closeApplicantsTab()
+    public void closeApplicantsTab() //close tab
     {
         if(waitingForHire != null)
         {
@@ -98,7 +103,7 @@ public class ArbetareManager : ArbetareBase
         }
     }
 
-    public void newWorker()
+    public void newWorker() //skapar nya arbetare
     {
         for (int i = 0; i < guys.Count; i++)
         {
@@ -110,7 +115,7 @@ public class ArbetareManager : ArbetareBase
         workerSpawn.y += 0.7f;
 
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) //väljer vilken arbetare och skapar stats
         {
             GameObject newestWorker = Instantiate(workerSkins[Random.Range(0,workerSkins.Count)], workerSpawn, Quaternion.identity);
             newestWorker.transform.localScale -= scaleChange;
@@ -121,7 +126,7 @@ public class ArbetareManager : ArbetareBase
         Invoke("cvShowStats",0.2f);
     }
 
-    void cvShowStats()
+    void cvShowStats() //visar stats på texterna
     {
         CV CVtemp = waitingForHire[0].GetComponentInChildren<CV>();
         statText1.text = "Quality: " + CVtemp.workerQuality + " Speed: " + CVtemp.workerSpeed + " Service: " + CVtemp.workerService + " Energy: " + CVtemp.restingTime;
@@ -131,7 +136,7 @@ public class ArbetareManager : ArbetareBase
         statText3.text = "Quality: " + CVtemp.workerQuality + " Speed: " + CVtemp.workerSpeed + " Service: " + CVtemp.workerService + " Energy: " + CVtemp.restingTime;
     }
 
-    //choose a guy (or woman)
+    //välj en arbetare
     public void guy1()
     {
         arbetareList.Add(waitingForHire[0]);
@@ -152,7 +157,7 @@ public class ArbetareManager : ArbetareBase
         waitingForHire.RemoveAt(2);
         restoreGuyLists();
     }
-    public void restoreGuyLists()
+    public void restoreGuyLists() //cleanup kod som alla arbetare behöver innan de anställs
     {
         var temp = arbetareList.Last();
         temp.GetComponent<ArbetareScript>().breakTimer = 0;
@@ -171,7 +176,7 @@ public class ArbetareManager : ArbetareBase
         Invoke("countStats", 0.5f);
     }
 
-    public void countStats()
+    public void countStats() //räkna ihop stats
     {
         totalQuality = 0;
         totalService = 0;
@@ -212,7 +217,7 @@ public class ArbetareManager : ArbetareBase
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < arbetareList.Count; i++)
+        for (int i = 0; i < arbetareList.Count; i++) //kollar om trött
         {
            if(arbetareList[i].GetComponent<ArbetareScript>().tiredHappened)
            {
@@ -222,7 +227,7 @@ public class ArbetareManager : ArbetareBase
 
         totalTired = tiredWorker.Count;
 
-        for (int i = 0; i < tiredWorker.Count; i++)
+        for (int i = 0; i < tiredWorker.Count; i++) //kollar om inte trött
         {
             if (tiredWorker[i].GetComponent<ArbetareScript>().tiredHappened == false)
             {
@@ -232,10 +237,10 @@ public class ArbetareManager : ArbetareBase
 
         if (Input.GetKeyDown(KeyCode.Tab) && waitingForHire != null)
         {
-            closeApplicantsTab();
+            closeApplicantsTab(); //close tab
         }   
 
-        if(totalGuys == 3)
+        if(totalGuys == 3) //kan inte anställa fler än 3
         {
             noMoreGuys.enabled = true;
 

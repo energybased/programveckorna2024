@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CV : ArbetareBase
 {
+    //max skrev allt
+
+    //generar stats för arbetarna
+
     int rngSpeed;
     int rngQuality;
     int rngService;

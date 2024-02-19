@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ArbetareBase : MonoBehaviour
-{
-    //variabler
+{   
+    //bas för arbetare;
+
     //stats
     public float workerSpeed;
     public float workerQuality;
